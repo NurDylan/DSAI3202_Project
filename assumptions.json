@@ -1,0 +1,121 @@
+{
+  "version": "1.0",
+  "created_date": "2026-03-17",
+  "project": "DSAI3202 - Crime Type Prediction",
+  "categories": {
+    "data_quality": [
+      {
+        "id": "DQ-01",
+        "assumption": "Rows missing Latitude or Longitude cannot be geolocated and are dropped.",
+        "impact": "74,115 rows removed (1.00% of raw data).",
+        "etl_step": "Step 3 - drop_missing_critical"
+      },
+      {
+        "id": "DQ-02",
+        "assumption": "Rows missing Primary Type are dropped - the target variable cannot be imputed.",
+        "impact": "Included in the 74,115 dropped rows. Fabricating labels would invalidate the classifier.",
+        "etl_step": "Step 3 - drop_missing_critical"
+      },
+      {
+        "id": "DQ-03",
+        "assumption": "The single row missing Date is dropped - temporal features cannot be engineered without it.",
+        "impact": "1 row removed.",
+        "etl_step": "Step 3 - drop_missing_critical"
+      },
+      {
+        "id": "DQ-04",
+        "assumption": "Non-critical text columns (Description, Location Description, Block, FBI Code, IUCR) with nulls are filled with UNKNOWN to preserve the row.",
+        "impact": "5,873 Location Description nulls filled. Row count unchanged.",
+        "etl_step": "Step 4 - fill_non_critical_nulls"
+      },
+      {
+        "id": "DQ-05",
+        "assumption": "Ward (8.32% null) and Community Area (8.30% null) are filled with 0. These nulls are concentrated in older records (pre-2003) and are not random.",
+        "impact": "~614k rows retain value 0 for Ward/Community Area. Models must treat 0 as a missing-indicator category.",
+        "etl_step": "Step 4 - fill_non_critical_nulls"
+      }
+    ],
+    "geospatial": [
+      {
+        "id": "GEO-01",
+        "assumption": "Any coordinate outside Chicago bounding box (Lat 41.60-42.05, Lon -88.00 to -87.50) is a data entry error.",
+        "impact": "147 rows removed in ETL Step 6.",
+        "etl_step": "Step 6 - validate_coordinates"
+      },
+      {
+        "id": "GEO-02",
+        "assumption": "Longitude IQR outliers [-87.84190, -87.50010] represent anomalous coordinate clusters within Chicago bounds and are removed.",
+        "impact": "33,758 rows removed in ETL Step 9. Latitude had 0 outliers by IQR.",
+        "etl_step": "Step 9 - remove_coordinate_outliers"
+      },
+      {
+        "id": "GEO-03",
+        "assumption": "Latitude and Longitude (WGS84) are used as spatial features. X/Y Coordinate (Illinois State Plane feet) are not used as features.",
+        "impact": "X/Y Coordinate columns retained in processed file but excluded from feature matrix.",
+        "etl_step": "Task 5 - feature engineering"
+      }
+    ],
+    "temporal": [
+      {
+        "id": "TEMP-01",
+        "assumption": "All timestamps are in Chicago local time (CT, UTC-6 / UTC-5 DST). No timezone conversion applied.",
+        "impact": "Hour-of-day features may be off by 1 hour during DST transitions (minor).",
+        "etl_step": "Step 5 - fix_data_types"
+      },
+      {
+        "id": "TEMP-02",
+        "assumption": "Records before 2001-01-01 or after today are data entry errors and are dropped.",
+        "impact": "0 rows removed - all records fell within 2001-2024.",
+        "etl_step": "Step 7 - validate_temporal_range"
+      }
+    ],
+    "target_variable": [
+      {
+        "id": "TGT-01",
+        "assumption": "Primary Type is the classification target. It is standardized to UPPERCASE and rare types are merged.",
+        "impact": "8 rare types (< 500 occurrences) merged into OTHER. Final: 29 classes.",
+        "etl_step": "Step 8 - standardize_crime_types"
+      },
+      {
+        "id": "TGT-02",
+        "assumption": "DOMESTIC VIOLENCE fell below the 500-row threshold and was merged into OTHER. While meaningful, it had insufficient samples for reliable classification.",
+        "impact": "DOMESTIC VIOLENCE records are now labeled OTHER. Threshold can be lowered to 100 to preserve this class if needed.",
+        "etl_step": "Step 8 - standardize_crime_types"
+      }
+    ],
+    "modelling": [
+      {
+        "id": "MDL-01",
+        "assumption": "Arrest is EXCLUDED from model features. It is a post-incident field - knowing whether an arrest was made would constitute target leakage for a pre-incident prediction system.",
+        "impact": "Arrest column retained in processed file but must not be passed to the classifier.",
+        "etl_step": "Task 5 - feature engineering"
+      },
+      {
+        "id": "MDL-02",
+        "assumption": "Case Number deduplication keeps the first occurrence. Updated records (e.g. arrest status changes) reflect administrative updates, not new crimes.",
+        "impact": "565 updated records removed. First-reported state of each crime is the prediction target.",
+        "etl_step": "Step 2 - deduplicate_case_number"
+      },
+      {
+        "id": "MDL-03",
+        "assumption": "Time-series cross-validation with temporal splits will be used in Phase 2 to prevent future data leaking into training.",
+        "impact": "Train on years 2001-2020, validate on 2021-2022, test on 2023-2024 (subject to Phase 2 design).",
+        "etl_step": "Phase 2 - modelling"
+      }
+    ],
+    "ethics_and_fairness": [
+      {
+        "id": "ETH-01",
+        "assumption": "The model predicts crime TYPE, not individuals. No demographic or personal data is used as a feature.",
+        "impact": "Reduces direct individual discrimination risk.",
+        "etl_step": "All phases"
+      },
+      {
+        "id": "ETH-02",
+        "assumption": "Geographic features (Latitude, Longitude, Community Area) may encode historical policing bias. Over-policed areas appear to have more recorded crime.",
+        "impact": "Model predictions reflect recorded crime patterns, not necessarily true crime rates. This limitation must be stated in deployment documentation.",
+        "etl_step": "Task 5 - feature engineering"
+      }
+    ]
+  }
+}
