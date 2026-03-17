@@ -1,0 +1,94 @@
+{
+  "version": "1.0",
+  "created_date": "2026-03-17",
+  "zones": {
+    "raw": {
+      "path": "data/raw/",
+      "description": "Original downloaded files. NEVER modified after ingestion. Versioned by dataset name + semantic version + ingestion date.",
+      "access_rule": "READ ONLY",
+      "files": [
+        {
+          "filename": "chicago_crime_v1.0_2026-03-16.csv",
+          "size_mb": 1662.93,
+          "modified": "2026-03-15T22:54:38.513852"
+        },
+        {
+          "filename": "crime_data.csv",
+          "size_mb": 1662.93,
+          "modified": "2026-03-15T22:54:38.513852"
+        }
+      ]
+    },
+    "processed": {
+      "path": "data/processed/",
+      "description": "ETL output files. Cleaned, typed, and validated. Ready for EDA and feature engineering.",
+      "access_rule": "READ/WRITE by pipeline scripts only",
+      "files": [
+        {
+          "filename": "chicago_crime_cleaned_v1.0.csv",
+          "size_mb": 1623.34,
+          "modified": "2026-03-16T02:37:48.796659"
+        }
+      ]
+    },
+    "catalog": {
+      "path": "data/catalog/",
+      "description": "Metadata files: schema catalog, ETL report, lineage, assumptions, label encodings. JSON format.",
+      "access_rule": "READ/WRITE by pipeline scripts only",
+      "files": [
+        {
+          "filename": "assumptions.json",
+          "size_mb": 0.01,
+          "modified": "2026-03-17T18:51:58.861795"
+        },
+        {
+          "filename": "crime_type_merges.json",
+          "size_mb": 0.0,
+          "modified": "2026-03-16T02:36:27.065337"
+        },
+        {
+          "filename": "data_catalog.json",
+          "size_mb": 0.01,
+          "modified": "2026-03-17T18:51:58.856004"
+        },
+        {
+          "filename": "etl_report.json",
+          "size_mb": 0.0,
+          "modified": "2026-03-16T02:37:48.796659"
+        },
+        {
+          "filename": "ingestion_manifest.json",
+          "size_mb": 0.0,
+          "modified": "2026-03-16T02:14:56.247762"
+        },
+        {
+          "filename": "lineage.json",
+          "size_mb": 0.0,
+          "modified": "2026-03-17T18:51:58.859653"
+        }
+      ]
+    },
+    "logs": {
+      "path": "logs/",
+      "description": "Pipeline execution logs. One log file per script.",
+      "access_rule": "READ ONLY (append by pipeline scripts)",
+      "files": [
+        {
+          "filename": "catalog.log",
+          "size_mb": 0.0,
+          "modified": "2026-03-17T18:51:58.861795"
+        },
+        {
+          "filename": "etl.log",
+          "size_mb": 0.01,
+          "modified": "2026-03-16T02:37:48.796659"
+        },
+        {
+          "filename": "ingestion.log",
+          "size_mb": 0.01,
+          "modified": "2026-03-16T02:14:56.247762"
+        }
+      ]
+    }
+  }
+}

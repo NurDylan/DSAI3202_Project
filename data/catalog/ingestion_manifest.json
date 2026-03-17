@@ -1,0 +1,42 @@
+{
+  "dataset_name": "chicago_crime",
+  "version": "v1.0",
+  "ingestion_date": "2026-03-16",
+  "ingestion_mode": "batch",
+  "source_url": "https://www.kaggle.com/datasets/middlehigh/los-angeles-crime-data-from-2000/data",
+  "raw_file_path": "data\\raw\\chicago_crime_v1.0_2026-03-16.csv",
+  "file_size_mb": 1662.93,
+  "row_count": 7391187,
+  "column_count": 22,
+  "columns": [
+    "ID",
+    "Case Number",
+    "Date",
+    "Block",
+    "IUCR",
+    "Primary Type",
+    "Description",
+    "Location Description",
+    "Arrest",
+    "Domestic",
+    "Beat",
+    "District",
+    "Ward",
+    "Community Area",
+    "FBI Code",
+    "X Coordinate",
+    "Y Coordinate",
+    "Year",
+    "Updated On",
+    "Latitude",
+    "Longitude",
+    "Location"
+  ],
+  "md5_checksum": "3cfac7dd7d8eb2d47b9665ddbe56e486",
+  "refresh_strategy": "on-demand re-run with incremented version tag",
+  "storage_layout": {
+    "raw_zone": "data/raw/",
+    "processed_zone": "data/processed/",
+    "catalog_zone": "data/catalog/"
+  }
+}

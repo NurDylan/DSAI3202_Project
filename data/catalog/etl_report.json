@@ -1,0 +1,77 @@
+{
+  "run_date": "2026-03-16",
+  "version": "v1.0",
+  "transformations": [
+    {
+      "step": "1_drop_exact_duplicates",
+      "rows_before": 7391187,
+      "rows_after": 7391187,
+      "rows_dropped": 0,
+      "notes": "Remove rows that are identical across all columns."
+    },
+    {
+      "step": "2_dedup_case_number",
+      "rows_before": 7391187,
+      "rows_after": 7390622,
+      "rows_dropped": 565,
+      "notes": "Keep first occurrence per Case Number (crime records may be updated)."
+    },
+    {
+      "step": "3_drop_missing_critical",
+      "rows_before": 7390622,
+      "rows_after": 7316507,
+      "rows_dropped": 74115,
+      "notes": "Drop rows with null in: ['Date', 'Primary Type', 'Latitude', 'Longitude']."
+    },
+    {
+      "step": "4_fill_non_critical_nulls",
+      "rows_before": 7316507,
+      "rows_after": 7316507,
+      "rows_dropped": 0,
+      "notes": "Non-critical text cols \u2192 'UNKNOWN'; numeric admin cols \u2192 0."
+    },
+    {
+      "step": "5_fix_data_types",
+      "rows_before": 7316507,
+      "rows_after": 7316507,
+      "rows_dropped": 0,
+      "notes": "Date \u2192 datetime64; Lat/Lon \u2192 float64; Arrest/Domestic \u2192 bool; strings standardized."
+    },
+    {
+      "step": "6_validate_coordinates",
+      "rows_before": 7316507,
+      "rows_after": 7316360,
+      "rows_dropped": 147,
+      "notes": "Bounding box: Lat [41.6, 42.05], Lon [-88.0, -87.5]."
+    },
+    {
+      "step": "7_validate_temporal_range",
+      "rows_before": 7316360,
+      "rows_after": 7316360,
+      "rows_dropped": 0,
+      "notes": "Date range: 2001-01-01 to 2026-03-16."
+    },
+    {
+      "step": "8_standardize_crime_types",
+      "rows_before": 7316360,
+      "rows_after": 7316360,
+      "rows_dropped": 0,
+      "notes": "Merged 8 rare types into 'OTHER' (threshold=500)."
+    },
+    {
+      "step": "9_remove_coordinate_outliers",
+      "rows_before": 7316360,
+      "rows_after": 7282602,
+      "rows_dropped": 33758,
+      "notes": "IQR (1.5\u00d7) outlier removal on Latitude and Longitude."
+    }
+  ],
+  "input_file": "data\\raw\\chicago_crime_v1.0_2026-03-16.csv",
+  "rows_raw": 7391187,
+  "columns_raw": 22,
+  "output_file": "data\\processed\\chicago_crime_cleaned_v1.0.csv",
+  "rows_cleaned": 7282602,
+  "columns_final": 22,
+  "rows_total_dropped": 108585,
+  "retention_rate_%": 98.53
+}

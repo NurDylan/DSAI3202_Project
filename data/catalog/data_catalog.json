@@ -1,0 +1,349 @@
+{
+  "catalog_version": "1.0",
+  "created_date": "2026-03-17",
+  "dataset_name": "Chicago Crime Dataset",
+  "dataset_version": "v1.0",
+  "source_url": "https://www.kaggle.com/datasets/middlehigh/los-angeles-crime-data-from-2000/data",
+  "project": "DSAI3202 - Predicting Crime Types by Location and Time-Series Data",
+  "authors": [
+    "Nur Afiqah - 60306981",
+    "Elaf Marouf - 60107174"
+  ],
+  "raw_row_count": 7391187,
+  "cleaned_row_count": 7282602,
+  "column_count": 22,
+  "target_variable": "Primary Type",
+  "target_classes": 29,
+  "date_range": {
+    "start": "2001-01-01",
+    "end": "2024-05-20"
+  },
+  "column_roles": {
+    "target": [
+      "Primary Type"
+    ],
+    "features": [
+      "Latitude",
+      "Longitude"
+    ],
+    "feature_candidates": [
+      "Date",
+      "Community Area",
+      "Beat",
+      "District",
+      "Ward",
+      "Domestic",
+      "Location Description",
+      "Year"
+    ],
+    "excluded": [
+      "Arrest"
+    ],
+    "identifiers": [
+      "ID",
+      "Case Number"
+    ],
+    "descriptive": [
+      "Block",
+      "IUCR",
+      "Description",
+      "FBI Code",
+      "X Coordinate",
+      "Y Coordinate",
+      "Location"
+    ],
+    "metadata": [
+      "Updated On"
+    ]
+  },
+  "columns": [
+    {
+      "name": "ID",
+      "dtype": "int64",
+      "nullable": false,
+      "zone": "both",
+      "role": "identifier",
+      "description": "Unique numeric identifier for each crime record assigned by Chicago PD.",
+      "notes": "Not used as a model feature.",
+      "null_count_sample": 0,
+      "unique_count_sample": 100000,
+      "inferred_dtype": "int64",
+      "sample_min": 1150.0,
+      "sample_max": 13359268.0
+    },
+    {
+      "name": "Case Number",
+      "dtype": "string",
+      "nullable": false,
+      "zone": "both",
+      "role": "identifier",
+      "description": "Chicago Police Department case number (e.g. JG423596).",
+      "notes": "Deduplicated in ETL Step 2 - first occurrence kept.",
+      "null_count_sample": 0,
+      "unique_count_sample": 100000,
+      "inferred_dtype": "object"
+    },
+    {
+      "name": "Date",
+      "dtype": "datetime64[ns]",
+      "nullable": false,
+      "zone": "processed",
+      "role": "feature_source",
+      "description": "Timestamp of crime occurrence. Raw format: MM/DD/YYYY HH:MM:SS AM/PM (Chicago CT).",
+      "notes": "Parsed to datetime64 in ETL Step 5. Source of all temporal features in Task 5.",
+      "null_count_sample": 0,
+      "unique_count_sample": 51288,
+      "inferred_dtype": "object"
+    },
+    {
+      "name": "Block",
+      "dtype": "string",
+      "nullable": true,
+      "zone": "both",
+      "role": "descriptive",
+      "description": "Anonymized block-level address of the crime (e.g. 073XX S JEFFERY AVE).",
+      "notes": "Nulls filled with UNKNOWN in ETL Step 4. Not used as a model feature.",
+      "null_count_sample": 0,
+      "unique_count_sample": 22274,
+      "inferred_dtype": "object"
+    },
+    {
+      "name": "IUCR",
+      "dtype": "string",
+      "nullable": true,
+      "zone": "both",
+      "role": "descriptive",
+      "description": "Illinois Uniform Crime Reporting code - 4-character crime classification code.",
+      "notes": "Nulls filled with UNKNOWN in ETL Step 4.",
+      "null_count_sample": 0,
+      "unique_count_sample": 292,
+      "inferred_dtype": "object"
+    },
+    {
+      "name": "Primary Type",
+      "dtype": "string",
+      "nullable": false,
+      "zone": "both",
+      "role": "target",
+      "description": "High-level crime category (e.g. THEFT, BATTERY, ASSAULT). This is the classification TARGET variable.",
+      "notes": "Standardized to UPPERCASE in ETL Step 5. 8 rare types (< 500 occurrences) merged into OTHER in ETL Step 8: PUBLIC INDECENCY, NON-CRIMINAL, OTHER NARCOTIC VIOLATION, HUMAN TRAFFICKING, NON - CRIMINAL, RITUALISM, NON-CRIMINAL (SUBJECT SPECIFIED), DOMESTIC VIOLENCE. Final unique count: 29 classes.",
+      "null_count_sample": 0,
+      "unique_count_sample": 28,
+      "inferred_dtype": "object"
+    },
+    {
+      "name": "Description",
+      "dtype": "string",
+      "nullable": true,
+      "zone": "both",
+      "role": "descriptive",
+      "description": "Subcategory description of the crime under Primary Type (e.g. SIMPLE, AGGRAVATED).",
+      "notes": "Nulls filled with UNKNOWN in ETL Step 4.",
+      "null_count_sample": 0,
+      "unique_count_sample": 275,
+      "inferred_dtype": "object"
+    },
+    {
+      "name": "Location Description",
+      "dtype": "string",
+      "nullable": true,
+      "zone": "both",
+      "role": "descriptive",
+      "description": "Type of location where crime occurred (e.g. STREET, RESIDENCE, APARTMENT).",
+      "notes": "5,873 nulls filled with UNKNOWN in ETL Step 4. Candidate feature in Task 5.",
+      "null_count_sample": 0,
+      "unique_count_sample": 121,
+      "inferred_dtype": "object"
+    },
+    {
+      "name": "Arrest",
+      "dtype": "bool",
+      "nullable": false,
+      "zone": "both",
+      "role": "excluded",
+      "description": "True if an arrest was made in connection with this crime.",
+      "notes": "Cast to bool in ETL Step 5. EXCLUDED from model features - post-incident field that would introduce target leakage into the classifier.",
+      "null_count_sample": 0,
+      "unique_count_sample": 2,
+      "inferred_dtype": "bool",
+      "sample_min": 0.0,
+      "sample_max": 1.0
+    },
+    {
+      "name": "Domestic",
+      "dtype": "bool",
+      "nullable": false,
+      "zone": "both",
+      "role": "feature_candidate",
+      "description": "True if the crime was classified as a domestic incident under the Illinois Domestic Violence Act.",
+      "notes": "Cast to bool in ETL Step 5. Candidate feature in Task 5.",
+      "null_count_sample": 0,
+      "unique_count_sample": 2,
+      "inferred_dtype": "bool",
+      "sample_min": 0.0,
+      "sample_max": 1.0
+    },
+    {
+      "name": "Beat",
+      "dtype": "int64",
+      "nullable": false,
+      "zone": "both",
+      "role": "feature_candidate",
+      "description": "Chicago Police Department patrol beat - the smallest geographic unit of policing.",
+      "notes": "Nulls filled with 0 in ETL Step 4. Candidate geospatial feature in Task 5.",
+      "null_count_sample": 0,
+      "unique_count_sample": 269,
+      "inferred_dtype": "int64",
+      "sample_min": 111.0,
+      "sample_max": 2535.0
+    },
+    {
+      "name": "District",
+      "dtype": "int64",
+      "nullable": false,
+      "zone": "both",
+      "role": "feature_candidate",
+      "description": "Chicago Police Department district number (1-25) grouping multiple beats.",
+      "notes": "48 nulls filled with 0 in ETL Step 4.",
+      "null_count_sample": 0,
+      "unique_count_sample": 22,
+      "inferred_dtype": "int64",
+      "sample_min": 1.0,
+      "sample_max": 25.0
+    },
+    {
+      "name": "Ward",
+      "dtype": "int64",
+      "nullable": false,
+      "zone": "both",
+      "role": "feature_candidate",
+      "description": "Chicago City Council ward number (1-50). Administrative/political subdivision.",
+      "notes": "614,820 nulls (8.32%) filled with 0 in ETL Step 4. High null rate documented.",
+      "null_count_sample": 0,
+      "unique_count_sample": 51,
+      "inferred_dtype": "int64",
+      "sample_min": 0.0,
+      "sample_max": 50.0
+    },
+    {
+      "name": "Community Area",
+      "dtype": "int64",
+      "nullable": false,
+      "zone": "both",
+      "role": "feature_candidate",
+      "description": "Chicago community area number (1-77). Stable socioeconomic neighbourhood boundaries.",
+      "notes": "613,469 nulls (8.30%) filled with 0 in ETL Step 4. Key geospatial feature candidate - encodes neighbourhood context.",
+      "null_count_sample": 0,
+      "unique_count_sample": 78,
+      "inferred_dtype": "int64",
+      "sample_min": 0.0,
+      "sample_max": 77.0
+    },
+    {
+      "name": "FBI Code",
+      "dtype": "string",
+      "nullable": true,
+      "zone": "both",
+      "role": "descriptive",
+      "description": "FBI Uniform Crime Reporting classification code for the offense.",
+      "notes": "Nulls filled with UNKNOWN in ETL Step 4.",
+      "null_count_sample": 0,
+      "unique_count_sample": 26,
+      "inferred_dtype": "object"
+    },
+    {
+      "name": "X Coordinate",
+      "dtype": "float64",
+      "nullable": true,
+      "zone": "both",
+      "role": "descriptive",
+      "description": "Illinois State Plane East coordinate in feet (NAD 1927 projection).",
+      "notes": "74,115 nulls (1.00%). Not used as feature - Latitude/Longitude used instead.",
+      "null_count_sample": 0,
+      "unique_count_sample": 36596,
+      "inferred_dtype": "float64",
+      "sample_min": 1117974.0,
+      "sample_max": 1205119.0
+    },
+    {
+      "name": "Y Coordinate",
+      "dtype": "float64",
+      "nullable": true,
+      "zone": "both",
+      "role": "descriptive",
+      "description": "Illinois State Plane North coordinate in feet (NAD 1927 projection).",
+      "notes": "74,115 nulls (1.00%). Not used as feature - Latitude/Longitude used instead.",
+      "null_count_sample": 0,
+      "unique_count_sample": 45330,
+      "inferred_dtype": "float64",
+      "sample_min": 1813897.0,
+      "sample_max": 1951503.0
+    },
+    {
+      "name": "Year",
+      "dtype": "int64",
+      "nullable": false,
+      "zone": "both",
+      "role": "feature_candidate",
+      "description": "Year the crime occurred (2001-2024). Extracted from Date by Chicago PD system.",
+      "notes": "Redundant with Date column but pre-extracted. Range confirmed: 2001-2024.",
+      "null_count_sample": 0,
+      "unique_count_sample": 24,
+      "inferred_dtype": "int64",
+      "sample_min": 2001.0,
+      "sample_max": 2024.0
+    },
+    {
+      "name": "Updated On",
+      "dtype": "datetime64[ns]",
+      "nullable": true,
+      "zone": "both",
+      "role": "metadata",
+      "description": "Timestamp of the last update to this record in the Chicago data portal.",
+      "notes": "Not used as a feature. Parsed to datetime64 in ETL Step 5.",
+      "null_count_sample": 0,
+      "unique_count_sample": 395,
+      "inferred_dtype": "object"
+    },
+    {
+      "name": "Latitude",
+      "dtype": "float64",
+      "nullable": false,
+      "zone": "both",
+      "role": "feature",
+      "description": "WGS84 decimal latitude of crime location. Valid range after ETL: 41.64459 to 42.02291.",
+      "notes": "74,115 rows dropped in ETL Step 3 (missing). Bounding box applied: [41.60, 42.05]. IQR filter applied: [41.56198, 42.11372] - 0 additional removed. Core spatial feature for prediction.",
+      "null_count_sample": 0,
+      "unique_count_sample": 62479,
+      "inferred_dtype": "float64",
+      "sample_min": 41.644589713,
+      "sample_max": 42.022548858
+    },
+    {
+      "name": "Longitude",
+      "dtype": "float64",
+      "nullable": false,
+      "zone": "both",
+      "role": "feature",
+      "description": "WGS84 decimal longitude of crime location. Valid range after ETL: -87.84190 to -87.52453.",
+      "notes": "IQR filter applied: [-87.84190, -87.50010] - 33,758 outliers removed in ETL Step 9. Core spatial feature for prediction.",
+      "null_count_sample": 0,
+      "unique_count_sample": 62473,
+      "inferred_dtype": "float64",
+      "sample_min": -87.841540172,
+      "sample_max": -87.524531562
+    },
+    {
+      "name": "Location",
+      "dtype": "string",
+      "nullable": true,
+      "zone": "both",
+      "role": "descriptive",
+      "description": "Combined string representation of coordinates in format (latitude, longitude).",
+      "notes": "74,115 nulls (1.00%). Redundant with Latitude/Longitude columns - not used as feature.",
+      "null_count_sample": 0,
+      "unique_count_sample": 62484,
+      "inferred_dtype": "object"
+    }
+  ]
+}

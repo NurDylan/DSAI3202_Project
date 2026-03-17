@@ -1,0 +1,64 @@
+{
+  "lineage_version": "1.0",
+  "created_date": "2026-03-17",
+  "description": "End-to-end data lineage for the Chicago Crime Classification Pipeline - DSAI3202 Phase 1.",
+  "stages": [
+    {
+      "stage": 1,
+      "name": "Source",
+      "script": null,
+      "input": "Kaggle dataset (external)",
+      "output": null,
+      "description": "USA Big City Crime Dataset downloaded from Kaggle. 1.74 GB CSV, 7,391,187 rows, 22 columns. URL: https://www.kaggle.com/datasets/middlehigh/los-angeles-crime-data-from-2000/data",
+      "row_count": 7391187
+    },
+    {
+      "stage": 2,
+      "name": "Raw Ingestion",
+      "script": "src/ingestion.py",
+      "input": "crime_data.csv (project root)",
+      "output": "data/raw/chicago_crime_v1.0_2026-03-16.csv",
+      "description": "Batch ingestion: file copied to versioned raw zone. MD5 checksum computed (3cfac7dd7d8eb2d47b9665ddbe56e486). Schema validated - all 22 columns present. Ingestion manifest written to data/catalog/ingestion_manifest.json.",
+      "row_count": 7391187,
+      "md5_checksum": "3cfac7dd7d8eb2d47b9665ddbe56e486"
+    },
+    {
+      "stage": 3,
+      "name": "ETL - Clean & Transform",
+      "script": "src/etl.py",
+      "input": "data/raw/chicago_crime_v1.0_2026-03-16.csv",
+      "output": "data/processed/chicago_crime_cleaned_v1.0.csv",
+      "description": "11-step ETL pipeline. Key operations: 565 Case Number duplicates removed; 74,115 rows dropped (missing Lat/Lon/Date/Primary Type); 5,873 Location Description nulls filled with UNKNOWN; Date parsed to datetime64 (format MM/DD/YYYY HH:MM:SS AM/PM); 147 out-of-bounds coordinates removed (Chicago bounding box); 8 rare crime types merged into OTHER (threshold=500); 33,758 Longitude outliers removed (IQR 1.5x). Final retention: 98.53%.",
+      "row_count": 7282602,
+      "rows_dropped": 108585,
+      "retention_rate_%": 98.53
+    },
+    {
+      "stage": 4,
+      "name": "Data Cataloging",
+      "script": "src/catalog.py",
+      "input": "data/processed/chicago_crime_cleaned_v1.0.csv",
+      "output": "data/catalog/data_catalog.json",
+      "description": "Schema registration, lineage documentation, and assumption recording. No row-level transformations.",
+      "row_count": 7282602
+    },
+    {
+      "stage": 5,
+      "name": "Exploratory Data Analysis",
+      "script": "src/eda.py",
+      "input": "data/processed/chicago_crime_cleaned_v1.0.csv",
+      "output": "outputs/eda/ (plots)",
+      "description": "EDA plots and data readiness assessment. No transformations.",
+      "row_count": 7282602
+    },
+    {
+      "stage": 6,
+      "name": "Feature Engineering",
+      "script": "src/features.py",
+      "input": "data/processed/chicago_crime_cleaned_v1.0.csv",
+      "output": "data/processed/chicago_crime_features_v1.0.csv",
+      "description": "Temporal features (hour, day_of_week, month, is_weekend, is_night, hour_sin, hour_cos), geospatial features, label encoding. Mutual information feature selection applied.",
+      "row_count": 7282602
+    }
+  ]
+}
