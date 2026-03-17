@@ -1,0 +1,186 @@
+2026-03-16 02:05:06,504  [INFO]  ============================================================
+2026-03-16 02:05:06,504  [INFO]  TASK 1 — DATA INGESTION STARTED
+2026-03-16 02:05:06,505  [INFO]  ============================================================
+2026-03-16 02:05:06,505  [ERROR]  Source file not found: 'crime_data.csv'
+  Download from: https://www.kaggle.com/datasets/middlehigh/los-angeles-crime-data-from-2000/data
+  Then set RAW_CSV_SOURCE at the top of this script.
+2026-03-16 02:07:17,684  [INFO]  ============================================================
+2026-03-16 02:07:17,684  [INFO]  TASK 1 — DATA INGESTION STARTED
+2026-03-16 02:07:17,687  [INFO]  ============================================================
+2026-03-16 02:07:17,687  [INFO]  Source file found: data/raw/crime_data.csv
+2026-03-16 02:07:17,687  [INFO]  File size: 1662.9 MB
+2026-03-16 02:07:17,688  [INFO]  Computing MD5 checksum for integrity verification...
+2026-03-16 02:07:20,908  [INFO]  MD5 checksum: 3cfac7dd7d8eb2d47b9665ddbe56e486
+2026-03-16 02:07:20,909  [INFO]  Versioning raw file into data/raw/ ...
+2026-03-16 02:07:22,182  [INFO]  Loading dataset to validate schema and log statistics...
+2026-03-16 02:07:50,344  [INFO]  Loaded:  7,391,187 rows  x  22 columns
+2026-03-16 02:07:50,344  [INFO]  Validating column schema...
+2026-03-16 02:07:50,344  [INFO]  Schema validation PASSED — all expected columns present.
+2026-03-16 02:07:50,345  [INFO]  Null value summary per column:
+2026-03-16 02:07:52,962  [INFO]  
+                      null_count  null_pct_%
+Ward                      614820        8.32
+Community Area            613469        8.30
+Location                   74115        1.00
+Y Coordinate               74115        1.00
+Latitude                   74115        1.00
+Longitude                  74115        1.00
+X Coordinate               74115        1.00
+Location Description        9124        0.12
+District                      48        0.00
+IUCR                           1        0.00
+Block                          1        0.00
+Date                           1        0.00
+Primary Type                   1        0.00
+Description                    1        0.00
+Arrest                         1        0.00
+Domestic                       1        0.00
+Beat                           1        0.00
+FBI Code                       1        0.00
+Year                           1        0.00
+Updated On                     1        0.00
+2026-03-16 02:08:05,021  [INFO]  Exact duplicate rows: 0
+2026-03-16 02:08:07,733  [INFO]  Duplicate Case Numbers: 565
+2026-03-16 02:08:08,062  [INFO]  Date column sample values: ['08/25/2007 09:22:18 AM', '05/24/2021 03:06:00 PM', '06/26/2021 09:24:00 AM', '11/09/2023 07:30:00 AM', '11/12/2023 07:59:00 AM']
+2026-03-16 02:08:08,063  [INFO]  Year distribution (from 'Year' column):
+2026-03-16 02:08:08,125  [INFO]  
+Year
+2001.0    485824
+2002.0    486788
+2003.0    475966
+2004.0    469411
+2005.0    453743
+2006.0    448149
+2007.0    437050
+2008.0    427135
+2009.0    392796
+2010.0    370442
+2011.0    351925
+2012.0    336212
+2013.0    307396
+2014.0    275649
+2015.0    264536
+2016.0    269573
+2017.0    268804
+2018.0    268437
+2019.0    260487
+2020.0    152831
+2021.0      2062
+2022.0      4279
+2023.0     89093
+2024.0     92598
+2026-03-16 02:08:08,246  [INFO]  Unique crime types (Primary Type): 36
+2026-03-16 02:08:08,246  [INFO]  Top 10 crime types:
+2026-03-16 02:08:08,459  [INFO]  
+Primary Type
+THEFT                  1562018
+BATTERY                1350514
+CRIMINAL DAMAGE         840252
+NARCOTICS               738619
+ASSAULT                 471450
+OTHER OFFENSE           459192
+BURGLARY                411182
+MOTOR VEHICLE THEFT     349058
+DECEPTIVE PRACTICE      310790
+ROBBERY                 278525
+2026-03-16 02:08:08,462  [INFO]  ============================================================
+2026-03-16 02:08:08,462  [INFO]  TASK 1 — INGESTION COMPLETE
+2026-03-16 02:08:08,463  [INFO]    Versioned raw file : data\raw\chicago_crime_v1.0_2026-03-16.csv
+2026-03-16 02:08:08,463  [INFO]    Rows ingested      : 7,391,187
+2026-03-16 02:08:08,463  [INFO]    Columns            : 22
+2026-03-16 02:08:08,463  [INFO]    Log file           : logs\ingestion.log
+2026-03-16 02:08:08,463  [INFO]  ============================================================
+2026-03-16 02:13:15,658  [INFO]  ============================================================
+2026-03-16 02:13:15,658  [INFO]  TASK 1 â€” DATA INGESTION STARTED
+2026-03-16 02:13:15,659  [INFO]  ============================================================
+2026-03-16 02:13:15,659  [ERROR]  Source file not found: 'crime_data.csv'
+  Download from: https://www.kaggle.com/datasets/middlehigh/los-angeles-crime-data-from-2000/data
+  Then set RAW_CSV_SOURCE at the top of this script.
+2026-03-16 02:14:03,846  [INFO]  ============================================================
+2026-03-16 02:14:03,846  [INFO]  TASK 1 â€” DATA INGESTION STARTED
+2026-03-16 02:14:03,847  [INFO]  ============================================================
+2026-03-16 02:14:03,847  [INFO]  Source file found: data/raw/crime_data.csv
+2026-03-16 02:14:03,847  [INFO]  File size: 1662.9 MB
+2026-03-16 02:14:03,847  [INFO]  Computing MD5 checksum for integrity verification...
+2026-03-16 02:14:06,913  [INFO]  MD5 checksum: 3cfac7dd7d8eb2d47b9665ddbe56e486
+2026-03-16 02:14:06,914  [INFO]  Versioning raw file into data/raw/ ...
+2026-03-16 02:14:07,849  [INFO]  Raw file versioned â†’ data\raw\chicago_crime_v1.0_2026-03-16.csv
+2026-03-16 02:14:07,850  [INFO]  Loading dataset to validate schema and log statistics...
+2026-03-16 02:14:37,140  [INFO]  Loaded:  7,391,187 rows  x  22 columns
+2026-03-16 02:14:37,141  [INFO]  Validating column schema...
+2026-03-16 02:14:37,141  [INFO]  Schema validation PASSED â€” all expected columns present.
+2026-03-16 02:14:37,141  [INFO]  Null value summary per column:
+2026-03-16 02:14:39,930  [INFO]  
+                      null_count  null_pct_%
+Ward                      614820        8.32
+Community Area            613469        8.30
+Location                   74115        1.00
+Y Coordinate               74115        1.00
+Latitude                   74115        1.00
+Longitude                  74115        1.00
+X Coordinate               74115        1.00
+Location Description        9124        0.12
+District                      48        0.00
+IUCR                           1        0.00
+Block                          1        0.00
+Date                           1        0.00
+Primary Type                   1        0.00
+Description                    1        0.00
+Arrest                         1        0.00
+Domestic                       1        0.00
+Beat                           1        0.00
+FBI Code                       1        0.00
+Year                           1        0.00
+Updated On                     1        0.00
+2026-03-16 02:14:52,656  [INFO]  Exact duplicate rows: 0
+2026-03-16 02:14:55,531  [INFO]  Duplicate Case Numbers: 565
+2026-03-16 02:14:55,853  [INFO]  Date column sample values: ['08/25/2007 09:22:18 AM', '05/24/2021 03:06:00 PM', '06/26/2021 09:24:00 AM', '11/09/2023 07:30:00 AM', '11/12/2023 07:59:00 AM']
+2026-03-16 02:14:55,853  [INFO]  Year distribution (from 'Year' column):
+2026-03-16 02:14:55,917  [INFO]  
+Year
+2001.0    485824
+2002.0    486788
+2003.0    475966
+2004.0    469411
+2005.0    453743
+2006.0    448149
+2007.0    437050
+2008.0    427135
+2009.0    392796
+2010.0    370442
+2011.0    351925
+2012.0    336212
+2013.0    307396
+2014.0    275649
+2015.0    264536
+2016.0    269573
+2017.0    268804
+2018.0    268437
+2019.0    260487
+2020.0    152831
+2021.0      2062
+2022.0      4279
+2023.0     89093
+2024.0     92598
+2026-03-16 02:14:56,045  [INFO]  Unique crime types (Primary Type): 36
+2026-03-16 02:14:56,046  [INFO]  Top 10 crime types:
+2026-03-16 02:14:56,258  [INFO]  
+Primary Type
+THEFT                  1562018
+BATTERY                1350514
+CRIMINAL DAMAGE         840252
+NARCOTICS               738619
+ASSAULT                 471450
+OTHER OFFENSE           459192
+BURGLARY                411182
+MOTOR VEHICLE THEFT     349058
+DECEPTIVE PRACTICE      310790
+ROBBERY                 278525
+2026-03-16 02:14:56,259  [INFO]  Ingestion manifest written â†’ data\catalog\ingestion_manifest.json
+2026-03-16 02:14:56,260  [INFO]  ============================================================
+2026-03-16 02:14:56,260  [INFO]  TASK 1 â€” INGESTION COMPLETE
+2026-03-16 02:14:56,260  [INFO]    Versioned raw file : data\raw\chicago_crime_v1.0_2026-03-16.csv
+2026-03-16 02:14:56,260  [INFO]    Rows ingested      : 7,391,187
+2026-03-16 02:14:56,261  [INFO]    Columns            : 22
+2026-03-16 02:14:56,261  [INFO]    Log file           : logs\ingestion.log
+2026-03-16 02:14:56,261  [INFO]  ============================================================

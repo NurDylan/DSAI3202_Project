@@ -1,0 +1,128 @@
+2026-03-16 02:22:50,620  [INFO]  ============================================================
+2026-03-16 02:22:50,620  [INFO]  TASK 2 — ETL PIPELINE STARTED
+2026-03-16 02:22:50,620  [INFO]  ============================================================
+2026-03-16 02:22:50,621  [INFO]  Loading raw file: data\raw\chicago_crime_v1.0_2026-03-16.csv
+2026-03-16 02:23:16,672  [INFO]  Loaded 7,391,187 rows × 22 columns
+2026-03-16 02:23:35,291  [INFO]    Filled 5,873 nulls in 'Location Description' with 'UNKNOWN'
+2026-03-16 02:23:36,816  [INFO]    Parsing 'Date' column to datetime...
+2026-03-16 02:24:15,832  [INFO]    Merging 8 rare crime types into 'OTHER': ['PUBLIC INDECENCY', 'NON-CRIMINAL', 'OTHER NARCOTIC VIOLATION', 'HUMAN TRAFFICKING', 'NON - CRIMINAL', 'RITUALISM', 'NON-CRIMINAL (SUBJECT SPECIFIED)', 'DOMESTIC VIOLENCE']
+2026-03-16 02:24:18,826  [INFO]    Final unique crime types: 29
+2026-03-16 02:24:19,214  [INFO]    Crime type distribution:
+Primary Type
+THEFT                                1544341
+BATTERY                              1344711
+CRIMINAL DAMAGE                       836259
+NARCOTICS                             727970
+ASSAULT                               469409
+OTHER OFFENSE                         455543
+BURGLARY                              409543
+MOTOR VEHICLE THEFT                   345906
+DECEPTIVE PRACTICE                    296183
+ROBBERY                               277027
+CRIMINAL TRESPASS                     206652
+WEAPONS VIOLATION                      88717
+PROSTITUTION                           68788
+PUBLIC PEACE VIOLATION                 50898
+OFFENSE INVOLVING CHILDREN             48593
+SEX OFFENSE                            27158
+CRIM SEXUAL ASSAULT                    26010
+INTERFERENCE WITH PUBLIC OFFICER       17746
+GAMBLING                               14503
+LIQUOR LAW VIOLATION                   14439
+HOMICIDE                               12588
+ARSON                                  12295
+KIDNAPPING                              6977
+INTIMIDATION                            4338
+STALKING                                4069
+CRIMINAL SEXUAL ASSAULT                 3618
+CONCEALED CARRY LICENSE VIOLATION        755
+OBSCENITY                                699
+OTHER                                    625
+2026-03-16 02:24:21,714  [INFO]    IQR filter on 'Latitude': [41.56198, 42.11372] — removed 0 outliers
+2026-03-16 02:24:23,173  [INFO]    IQR filter on 'Longitude': [-87.84190, -87.50010] — removed 33,758 outliers
+2026-03-16 02:24:23,679  [INFO]  FINAL QUALITY CHECK
+2026-03-16 02:24:23,679  [INFO]    Shape: 7,282,602 rows × 22 columns
+2026-03-16 02:24:24,153  [INFO]    Latitude range: 41.64459 – 42.02291
+2026-03-16 02:24:24,182  [INFO]    Longitude range: -87.84190 – -87.52453
+2026-03-16 02:24:24,495  [INFO]    Unique crime types: 29
+2026-03-16 02:24:24,507  [INFO]    Arrest rate: 26.9%
+2026-03-16 02:25:33,899  [INFO]  ============================================================
+2026-03-16 02:25:33,899  [INFO]  TASK 2 — ETL COMPLETE
+2026-03-16 02:25:33,900  [INFO]    Input rows      : 7,391,187
+2026-03-16 02:25:33,900  [INFO]    Output rows     : 7,282,602
+2026-03-16 02:25:33,900  [INFO]    Rows dropped    : 108,585
+2026-03-16 02:25:33,900  [INFO]    Retention rate  : 98.53%
+2026-03-16 02:25:33,901  [INFO]    Output file     : data\processed\chicago_crime_cleaned_v1.0.csv
+2026-03-16 02:25:33,902  [INFO]  ============================================================
+2026-03-16 02:34:51,014  [INFO]  ============================================================
+2026-03-16 02:34:51,014  [INFO]  TASK 2 â€” ETL PIPELINE STARTED
+2026-03-16 02:34:51,014  [INFO]  ============================================================
+2026-03-16 02:34:51,014  [INFO]  Loading raw file: data\raw\chicago_crime_v1.0_2026-03-16.csv
+2026-03-16 02:35:18,806  [INFO]  Loaded 7,391,187 rows Ã— 22 columns
+2026-03-16 02:35:32,763  [INFO]  [1_drop_exact_duplicates]  7,391,187 -> 7,391,187  (dropped 0 rows)  Remove rows that are identical across all columns.
+2026-03-16 02:35:36,680  [INFO]  [2_dedup_case_number]  7,391,187 -> 7,390,622  (dropped 565 rows)  Keep first occurrence per Case Number (crime records may be updated).
+2026-03-16 02:35:38,309  [INFO]  [3_drop_missing_critical]  7,390,622 -> 7,316,507  (dropped 74,115 rows)  Drop rows with null in: ['Date', 'Primary Type', 'Latitude', 'Longitude'].
+2026-03-16 02:35:39,500  [INFO]    Filled 5,873 nulls in 'Location Description' with 'UNKNOWN'
+2026-03-16 02:35:41,119  [INFO]  [4_fill_non_critical_nulls]  7,316,507 -> 7,316,507  (dropped 0 rows)  Non-critical text cols â†’ 'UNKNOWN'; numeric admin cols â†’ 0.
+2026-03-16 02:35:41,119  [INFO]    Parsing 'Date' column to datetime...
+2026-03-16 02:36:12,974  [INFO]  [5_fix_data_types]  7,316,507 -> 7,316,507  (dropped 0 rows)  Date â†’ datetime64; Lat/Lon â†’ float64; Arrest/Domestic â†’ bool; strings standardized.
+2026-03-16 02:36:20,464  [INFO]  [6_validate_coordinates]  7,316,507 -> 7,316,360  (dropped 147 rows)  Bounding box: Lat [41.6, 42.05], Lon [-88.0, -87.5].
+2026-03-16 02:36:22,623  [INFO]  [7_validate_temporal_range]  7,316,360 -> 7,316,360  (dropped 0 rows)  Date range: 2001-01-01 to 2026-03-16.
+2026-03-16 02:36:23,668  [INFO]    Merging 8 rare crime types into 'OTHER': ['PUBLIC INDECENCY', 'NON-CRIMINAL', 'OTHER NARCOTIC VIOLATION', 'HUMAN TRAFFICKING', 'NON - CRIMINAL', 'RITUALISM', 'NON-CRIMINAL (SUBJECT SPECIFIED)', 'DOMESTIC VIOLENCE']
+2026-03-16 02:36:26,657  [INFO]    Final unique crime types: 29
+2026-03-16 02:36:27,065  [INFO]    Crime type distribution:
+Primary Type
+THEFT                                1544341
+BATTERY                              1344711
+CRIMINAL DAMAGE                       836259
+NARCOTICS                             727970
+ASSAULT                               469409
+OTHER OFFENSE                         455543
+BURGLARY                              409543
+MOTOR VEHICLE THEFT                   345906
+DECEPTIVE PRACTICE                    296183
+ROBBERY                               277027
+CRIMINAL TRESPASS                     206652
+WEAPONS VIOLATION                      88717
+PROSTITUTION                           68788
+PUBLIC PEACE VIOLATION                 50898
+OFFENSE INVOLVING CHILDREN             48593
+SEX OFFENSE                            27158
+CRIM SEXUAL ASSAULT                    26010
+INTERFERENCE WITH PUBLIC OFFICER       17746
+GAMBLING                               14503
+LIQUOR LAW VIOLATION                   14439
+HOMICIDE                               12588
+ARSON                                  12295
+KIDNAPPING                              6977
+INTIMIDATION                            4338
+STALKING                                4069
+CRIMINAL SEXUAL ASSAULT                 3618
+CONCEALED CARRY LICENSE VIOLATION        755
+OBSCENITY                                699
+OTHER                                    625
+2026-03-16 02:36:27,066  [INFO]    Crime type merge mapping saved -> data\catalog\crime_type_merges.json
+2026-03-16 02:36:27,066  [INFO]  [8_standardize_crime_types]  7,316,360 -> 7,316,360  (dropped 0 rows)  Merged 8 rare types into 'OTHER' (threshold=500).
+2026-03-16 02:36:29,494  [INFO]    IQR filter on 'Latitude': [41.56198, 42.11372] - removed 0 outliers
+2026-03-16 02:36:31,063  [INFO]    IQR filter on 'Longitude': [-87.84190, -87.50010] - removed 33,758 outliers
+2026-03-16 02:36:31,064  [INFO]  [9_remove_coordinate_outliers]  7,316,360 -> 7,282,602  (dropped 33,758 rows)  IQR (1.5Ã—) outlier removal on Latitude and Longitude.
+2026-03-16 02:36:31,626  [INFO]  --------------------------------------------------
+2026-03-16 02:36:31,626  [INFO]  FINAL QUALITY CHECK
+2026-03-16 02:36:31,627  [INFO]    Shape: 7,282,602 rows Ã— 22 columns
+2026-03-16 02:36:32,087  [INFO]    [OK] No nulls in critical columns.
+2026-03-16 02:36:32,123  [INFO]    Date range: 2001-01-01 00:00:00 to 2024-05-20 00:00:00
+2026-03-16 02:36:32,156  [INFO]    Latitude range: 41.64459 to 42.02291
+2026-03-16 02:36:32,185  [INFO]    Longitude range: -87.84190 to -87.52453
+2026-03-16 02:36:32,545  [INFO]    Unique crime types: 29
+2026-03-16 02:36:32,555  [INFO]    Arrest rate: 26.9%
+2026-03-16 02:36:32,556  [INFO]  --------------------------------------------------
+2026-03-16 02:37:48,802  [INFO]  Cleaned dataset saved -> data\processed\chicago_crime_cleaned_v1.0.csv  (1623.3 MB)
+2026-03-16 02:37:48,803  [INFO]  ETL report saved -> data\catalog\etl_report.json
+2026-03-16 02:37:48,804  [INFO]  ============================================================
+2026-03-16 02:37:48,804  [INFO]  TASK 2 â€” ETL COMPLETE
+2026-03-16 02:37:48,804  [INFO]    Input rows      : 7,391,187
+2026-03-16 02:37:48,805  [INFO]    Output rows     : 7,282,602
+2026-03-16 02:37:48,805  [INFO]    Rows dropped    : 108,585
+2026-03-16 02:37:48,805  [INFO]    Retention rate  : 98.53%
+2026-03-16 02:37:48,805  [INFO]    Output file     : data\processed\chicago_crime_cleaned_v1.0.csv
+2026-03-16 02:37:48,805  [INFO]  ============================================================

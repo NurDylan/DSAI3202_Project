@@ -1,0 +1,55 @@
+2026-03-17 18:51:58,280  [INFO]  ============================================================
+2026-03-17 18:51:58,280  [INFO]  TASK 3 - DATA CATALOGING & GOVERNANCE STARTED
+2026-03-17 18:51:58,280  [INFO]  ============================================================
+2026-03-17 18:51:58,281  [INFO]  Loading cleaned dataset: data\processed\chicago_crime_cleaned_v1.0.csv
+2026-03-17 18:51:58,631  [INFO]  Loaded 100,000 rows (sample) for schema inference.
+2026-03-17 18:51:58,632  [INFO]  Building schema catalog...
+2026-03-17 18:51:58,686  [INFO]    Cataloged column: ID (int64) [identifier]
+2026-03-17 18:51:58,712  [INFO]    Cataloged column: Case Number (string) [identifier]
+2026-03-17 18:51:58,724  [INFO]    Cataloged column: Date (datetime64[ns]) [feature_source]
+2026-03-17 18:51:58,737  [INFO]    Cataloged column: Block (string) [descriptive]
+2026-03-17 18:51:58,742  [INFO]    Cataloged column: IUCR (string) [descriptive]
+2026-03-17 18:51:58,749  [INFO]    Cataloged column: Primary Type (string) [target]
+2026-03-17 18:51:58,768  [INFO]    Cataloged column: Description (string) [descriptive]
+2026-03-17 18:51:58,782  [INFO]    Cataloged column: Location Description (string) [descriptive]
+2026-03-17 18:51:58,785  [INFO]    Cataloged column: Arrest (bool) [excluded]
+2026-03-17 18:51:58,787  [INFO]    Cataloged column: Domestic (bool) [feature_candidate]
+2026-03-17 18:51:58,789  [INFO]    Cataloged column: Beat (int64) [feature_candidate]
+2026-03-17 18:51:58,791  [INFO]    Cataloged column: District (int64) [feature_candidate]
+2026-03-17 18:51:58,792  [INFO]    Cataloged column: Ward (int64) [feature_candidate]
+2026-03-17 18:51:58,794  [INFO]    Cataloged column: Community Area (int64) [feature_candidate]
+2026-03-17 18:51:58,803  [INFO]    Cataloged column: FBI Code (string) [descriptive]
+2026-03-17 18:51:58,810  [INFO]    Cataloged column: X Coordinate (float64) [descriptive]
+2026-03-17 18:51:58,816  [INFO]    Cataloged column: Y Coordinate (float64) [descriptive]
+2026-03-17 18:51:58,818  [INFO]    Cataloged column: Year (int64) [feature_candidate]
+2026-03-17 18:51:58,825  [INFO]    Cataloged column: Updated On (datetime64[ns]) [metadata]
+2026-03-17 18:51:58,832  [INFO]    Cataloged column: Latitude (float64) [feature]
+2026-03-17 18:51:58,838  [INFO]    Cataloged column: Longitude (float64) [feature]
+2026-03-17 18:51:58,856  [INFO]    Cataloged column: Location (string) [descriptive]
+2026-03-17 18:51:58,858  [INFO]  Schema catalog saved -> data\catalog\data_catalog.json
+2026-03-17 18:51:58,858  [INFO]  Building data lineage record...
+2026-03-17 18:51:58,859  [INFO]  Lineage record saved -> data\catalog\lineage.json
+2026-03-17 18:51:58,860  [INFO]  Recording project assumptions...
+2026-03-17 18:51:58,862  [INFO]  Assumptions saved -> data\catalog\assumptions.json
+2026-03-17 18:51:58,862  [INFO]  Building zone registry...
+2026-03-17 18:51:58,866  [INFO]  Zone registry saved -> data\catalog\zone_registry.json
+2026-03-17 18:51:58,866  [INFO]  ============================================================
+2026-03-17 18:51:58,867  [INFO]  TASK 3 - CATALOG SUMMARY
+2026-03-17 18:51:58,867  [INFO]  ============================================================
+2026-03-17 18:51:58,867  [INFO]    Columns cataloged     : 22
+2026-03-17 18:51:58,868  [INFO]    Target variable       : Primary Type (29 classes)
+2026-03-17 18:51:58,868  [INFO]    Feature columns       : 2
+2026-03-17 18:51:58,868  [INFO]    Feature candidates    : 8
+2026-03-17 18:51:58,869  [INFO]    Excluded columns      : ['Arrest']
+2026-03-17 18:51:58,869  [INFO]    Lineage stages        : 6
+2026-03-17 18:51:58,869  [INFO]    Total assumptions     : 17
+2026-03-17 18:51:58,870  [INFO]    Assumption categories : ['data_quality', 'geospatial', 'temporal', 'target_variable', 'modelling', 'ethics_and_fairness']
+2026-03-17 18:51:58,870  [INFO]  ============================================================
+2026-03-17 18:51:58,870  [INFO]  OUTPUT FILES:
+2026-03-17 18:51:58,871  [INFO]    data/catalog/data_catalog.json
+2026-03-17 18:51:58,871  [INFO]    data/catalog/lineage.json
+2026-03-17 18:51:58,871  [INFO]    data/catalog/assumptions.json
+2026-03-17 18:51:58,872  [INFO]    data/catalog/zone_registry.json
+2026-03-17 18:51:58,872  [INFO]    logs/catalog.log
+2026-03-17 18:51:58,872  [INFO]  ============================================================
+2026-03-17 18:51:58,873  [INFO]  TASK 3 - CATALOGING COMPLETE
