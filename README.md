@@ -489,31 +489,31 @@ Mutual information (MI) was computed between each feature and `crime_type_label`
 
 **1 — Validation Result (Azure ML Terminal)**
 
-![Azure Validation Result](screenshots/azure_validation_result.png)
+![Azure Validation Result](Screenshots/azure_validation_result.png)
 
 ---
 
 **2 — Raw Data Container**
 
-![Raw Data Container](screenshots/azure_raw_container.png)
+![Raw Data Container](Screenshots/azure_raw_container.png)
 
 ---
 
 **3 — Processed Data Container**
 
-![Processed Data Container](screenshots/azure_processed_container.png)
+![Processed Data Container](Screenshots/azure_processed_container.png)
 
 ---
 
 **4 — Catalog Container**
 
-![Catalog Container](screenshots/azure_catalog_container.png)
+![Catalog Container](Screenshots/azure_catalog_container.png)
 
 ---
 
 **5 — Compute Instance**
 
-![Compute Instance](screenshots/azure_compute_instance.png)
+![Compute Instance](Screenshots/azure_compute_instance.png)
 
 ---
 
