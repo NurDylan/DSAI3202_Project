@@ -1,0 +1,67 @@
+{
+  "deployment_version": "1.0",
+  "deployment_date": "2026-04-10",
+  "serving_mode": "batch",
+  "serving_justification": "Batch mode aligns with the project hypothesis — predictions are generated at shift start for resource allocation planning, not during active incident response. Latency < 500ms per record is not required; total batch completion time is the relevant metric.",
+  "champion_model": "crime-classifier-xgboost",
+  "model_file": "data\\phase_ii\\advanced_xgboost_model.pkl",
+  "input_interface": {
+    "source": "processed-data/chicago_crime_features_v1.0.csv",
+    "format": "CSV",
+    "features": [
+      "hour_sin",
+      "hour_cos",
+      "is_weekend",
+      "is_night",
+      "Latitude",
+      "Longitude",
+      "community_area_enc"
+    ]
+  },
+  "output_interface": {
+    "destination": "model-outputs/batch_predictions_v1.0.csv",
+    "format": "CSV",
+    "added_columns": [
+      "predicted_label",
+      "predicted_crime_type",
+      "confidence_score"
+    ]
+  },
+  "batch_stats": {
+    "rows_scored": 500000,
+    "batch_size": 100000,
+    "avg_confidence": 0.3226,
+    "prediction_distribution": {
+      "33": 184341,
+      "10": 180699,
+      "24": 57173,
+      "14": 37054,
+      "11": 7946,
+      "28": 6921,
+      "1": 5437,
+      "17": 5415,
+      "29": 4574,
+      "23": 4302,
+      "16": 2817,
+      "30": 2043,
+      "34": 239,
+      "3": 219,
+      "26": 130,
+      "31": 129,
+      "22": 99,
+      "21": 95,
+      "19": 77,
+      "13": 67,
+      "18": 47,
+      "15": 47,
+      "0": 37,
+      "2": 36,
+      "20": 32,
+      "32": 11,
+      "12": 6,
+      "27": 4,
+      "25": 3
+    }
+  },
+  "feature_parity": "Feature columns at serving time are identical to training: hour_sin, hour_cos, is_weekend, is_night, Latitude, Longitude, community_area_enc"
+}
