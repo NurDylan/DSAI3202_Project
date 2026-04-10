@@ -1,0 +1,247 @@
+# =============================================================
+# DSAI3202 - Phase 2 | Azure DevOps CI/CD Pipeline
+# Project: Predicting Crime Types by Location & Time-Series Data
+# Authors: Nur Afiqah (60306981), Elaf Marouf (60107174)
+# =============================================================
+#
+# PIPELINE STAGES:
+#   1. setup       — install dependencies, verify model files exist
+#   2. register    — upload models to Azure Blob + update model registry
+#   3. deploy      — run batch scoring, upload predictions to Azure Blob
+#   4. validate    — run 12-test functional validation suite
+#
+# TRIGGER:
+#   Runs automatically on every push to main.
+#   Can also be triggered manually from Azure DevOps Pipelines UI.
+#
+# REQUIRED PIPELINE VARIABLES (set in Azure DevOps > Pipelines > Variables):
+#   AZURE_STORAGE_CONNECTION_STRING  — Azure Blob Storage connection string
+#   AZURE_SUBSCRIPTION_ID            — Azure subscription ID
+#   AZURE_RESOURCE_GROUP             — Resource group name
+#   AZURE_ML_WORKSPACE               — Azure ML workspace name
+#
+# HOW TO SET VARIABLES:
+#   Azure DevOps > Pipelines > Edit > Variables > New variable
+#   Mark AZURE_STORAGE_CONNECTION_STRING as SECRET (lock icon)
+# =============================================================
+
+trigger:
+  branches:
+    include:
+      - main
+
+pr: none   # Don't run on pull requests — only on merged commits to main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  PYTHON_VERSION: "3.10"
+
+# =============================================================
+# STAGE 1 — SETUP
+# Install dependencies and verify all model .pkl files exist
+# =============================================================
+stages:
+
+- stage: Setup
+  displayName: "Stage 1 — Environment Setup"
+  jobs:
+  - job: InstallAndVerify
+    displayName: "Install dependencies & verify model files"
+    steps:
+
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: "$(PYTHON_VERSION)"
+      displayName: "Use Python $(PYTHON_VERSION)"
+
+    - script: |
+        python -m pip install --upgrade pip
+        pip install \
+          xgboost \
+          scikit-learn \
+          pandas \
+          numpy \
+          joblib \
+          azure-storage-blob \
+          azure-ai-ml \
+          azure-identity \
+          azureml-core
+      displayName: "Install Python dependencies"
+
+    - script: |
+        python - <<'EOF'
+        import os, sys
+
+        required = [
+            os.path.join("data", "phase_ii", "advanced_xgboost_model.pkl"),
+            os.path.join("data", "phase_ii", "decision_tree_model.pkl"),
+            os.path.join("data", "phase_ii", "baseline_logreg_model.pkl"),
+            os.path.join("data", "catalog", "label_encoding.json"),
+        ]
+
+        missing = [f for f in required if not os.path.exists(f)]
+        if missing:
+            print("MISSING FILES:")
+            for f in missing:
+                print(f"  - {f}")
+            sys.exit(1)
+
+        print("All required files present:")
+        for f in required:
+            size_mb = os.path.getsize(f) / (1024**2)
+            print(f"  OK  {f}  ({size_mb:.1f} MB)")
+        EOF
+      displayName: "Verify model .pkl files exist"
+
+# =============================================================
+# STAGE 2 — REGISTER
+# Upload models to Azure Blob Storage + update model_registry.json
+# =============================================================
+
+- stage: Register
+  displayName: "Stage 2 — Model Registration (Task II.3)"
+  dependsOn: Setup
+  condition: succeeded()
+  jobs:
+  - job: RegisterModels
+    displayName: "Upload models to Azure Blob & register metadata"
+    steps:
+
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: "$(PYTHON_VERSION)"
+      displayName: "Use Python $(PYTHON_VERSION)"
+
+    - script: |
+        pip install --quiet \
+          xgboost scikit-learn pandas numpy joblib \
+          azure-storage-blob azure-ai-ml azure-identity azureml-core
+      displayName: "Install dependencies"
+
+    - script: python scripts/upload_models.py
+      displayName: "Upload model .pkl files to my-models-storage"
+      env:
+        AZURE_STORAGE_CONNECTION_STRING: $(AZURE_STORAGE_CONNECTION_STRING)
+
+    - script: python scripts/register_model.py
+      displayName: "Register models with metadata"
+      env:
+        AZURE_STORAGE_CONNECTION_STRING: $(AZURE_STORAGE_CONNECTION_STRING)
+        AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+        AZURE_RESOURCE_GROUP: $(AZURE_RESOURCE_GROUP)
+        AZURE_ML_WORKSPACE: $(AZURE_ML_WORKSPACE)
+
+    - publish: data/phase_ii/model_registry.json
+      artifact: model_registry
+      displayName: "Publish model_registry.json as pipeline artifact"
+
+    - publish: logs/register_model.log
+      artifact: register_logs
+      displayName: "Publish registration log"
+      condition: always()
+
+# =============================================================
+# STAGE 3 — DEPLOY
+# Run batch scoring and upload predictions to Azure Blob
+# =============================================================
+
+- stage: Deploy
+  displayName: "Stage 3 — Batch Deployment (Task II.4)"
+  dependsOn: Register
+  condition: succeeded()
+  jobs:
+  - job: BatchScore
+    displayName: "Run batch predictions & upload to Azure Blob"
+    timeoutInMinutes: 30
+    steps:
+
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: "$(PYTHON_VERSION)"
+      displayName: "Use Python $(PYTHON_VERSION)"
+
+    - script: |
+        pip install --quiet \
+          xgboost scikit-learn pandas numpy joblib \
+          azure-storage-blob
+      displayName: "Install dependencies"
+
+    - script: python scripts/deploy_model.py
+      displayName: "Run batch scoring (500k rows → model-outputs/batch_predictions_v1.0.csv)"
+      env:
+        AZURE_STORAGE_CONNECTION_STRING: $(AZURE_STORAGE_CONNECTION_STRING)
+
+    - publish: deployment/deployment_config.json
+      artifact: deployment_config
+      displayName: "Publish deployment_config.json as pipeline artifact"
+
+    - publish: logs/deploy_model.log
+      artifact: deploy_logs
+      displayName: "Publish deployment log"
+      condition: always()
+
+# =============================================================
+# STAGE 4 — VALIDATE
+# Run 12-test functional validation suite
+# =============================================================
+
+- stage: Validate
+  displayName: "Stage 4 — Deployment Validation (Task II.5)"
+  dependsOn: Deploy
+  condition: succeeded()
+  jobs:
+  - job: ValidateDeployment
+    displayName: "Run validation suite (12 tests)"
+    steps:
+
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: "$(PYTHON_VERSION)"
+      displayName: "Use Python $(PYTHON_VERSION)"
+
+    - script: |
+        pip install --quiet \
+          xgboost scikit-learn pandas numpy joblib \
+          azure-storage-blob
+      displayName: "Install dependencies"
+
+    - script: python scripts/validate_deployment.py
+      displayName: "Run validate_deployment.py"
+      env:
+        AZURE_STORAGE_CONNECTION_STRING: $(AZURE_STORAGE_CONNECTION_STRING)
+
+    - script: |
+        python - <<'EOF'
+        import json, sys
+
+        with open("deployment/validation_report.json") as f:
+            report = json.load(f)
+
+        print(f"Total tests : {report['total_tests']}")
+        print(f"Passed      : {report['passed']}")
+        print(f"Failed      : {report['failed']}")
+        print(f"Pass rate   : {report['pass_rate']}")
+        print(f"Result      : {report['overall_result']}")
+
+        if report["overall_result"] == "FAIL":
+            print("\nFailed tests:")
+            for t in report["tests"]:
+                if t["status"] == "FAIL":
+                    print(f"  FAIL  {t['test']}  —  {t.get('detail','')}")
+            sys.exit(1)
+
+        print("\nAll validation tests passed.")
+        EOF
+      displayName: "Assert validation report — fail pipeline if any test fails"
+
+    - publish: deployment/validation_report.json
+      artifact: validation_report
+      displayName: "Publish validation_report.json as pipeline artifact"
+      condition: always()
+
+    - publish: logs
+      artifact: all_logs
+      displayName: "Publish all logs"
+      condition: always()
