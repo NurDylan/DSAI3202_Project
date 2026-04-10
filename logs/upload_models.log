@@ -1,0 +1,841 @@
+2026-04-10 13:04:37,463  [INFO]  ============================================================
+2026-04-10 13:04:37,463  [INFO]  TASK II.3 - UPLOAD MODELS TO AZURE BLOB STORAGE
+2026-04-10 13:04:37,464  [INFO]  ============================================================
+2026-04-10 13:04:37,929  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage?restype=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'aefda224-34c4-11f1-9e6a-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-04-10 13:04:38,388  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Last-Modified': 'Fri, 10 Apr 2026 10:04:38 GMT'
+    'ETag': '"0x8DE96E893AF6636"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef44b8-b01e-000b-55d1-c8cb46000000'
+    'x-ms-client-request-id': 'aefda224-34c4-11f1-9e6a-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:38 GMT'
+2026-04-10 13:04:38,389  [INFO]    Created container: my-models-storage
+2026-04-10 13:04:38,389  [INFO]    Uploading crime-classifier-xgboost (champion) (131.9 MB) -> models/advanced_xgboost_model.pkl ...
+2026-04-10 13:04:38,393  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'af446eab-34c4-11f1-9d5c-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:38,649  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef44c5-b01e-000b-60d1-c8cb46000000'
+    'x-ms-client-request-id': 'af446eab-34c4-11f1-9d5c-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:39 GMT'
+2026-04-10 13:04:38,656  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'af6c98be-34c4-11f1-a7dd-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:41,560  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef44ea-b01e-000b-05d1-c8cb46000000'
+    'x-ms-client-request-id': 'af6c98be-34c4-11f1-a7dd-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:39 GMT'
+2026-04-10 13:04:41,563  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b12836c6-34c4-11f1-8b52-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:41,777  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4650-b01e-000b-50d1-c8cb46000000'
+    'x-ms-client-request-id': 'b12836c6-34c4-11f1-8b52-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:42 GMT'
+2026-04-10 13:04:41,781  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b14977b3-34c4-11f1-9991-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:42,015  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef468f-b01e-000b-0cd1-c8cb46000000'
+    'x-ms-client-request-id': 'b14977b3-34c4-11f1-9991-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:42 GMT'
+2026-04-10 13:04:42,020  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b16ddd65-34c4-11f1-ba97-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:42,238  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef46da-b01e-000b-52d1-c8cb46000000'
+    'x-ms-client-request-id': 'b16ddd65-34c4-11f1-ba97-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:42 GMT'
+2026-04-10 13:04:42,245  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b1904df7-34c4-11f1-8fd2-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:42,476  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4700-b01e-000b-78d1-c8cb46000000'
+    'x-ms-client-request-id': 'b1904df7-34c4-11f1-8fd2-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:42 GMT'
+2026-04-10 13:04:42,482  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b1b465ea-34c4-11f1-b9bf-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:42,736  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4726-b01e-000b-1dd1-c8cb46000000'
+    'x-ms-client-request-id': 'b1b465ea-34c4-11f1-b9bf-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:43 GMT'
+2026-04-10 13:04:42,743  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b1dc2772-34c4-11f1-affa-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:42,980  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4749-b01e-000b-3fd1-c8cb46000000'
+    'x-ms-client-request-id': 'b1dc2772-34c4-11f1-affa-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:43 GMT'
+2026-04-10 13:04:42,987  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b2016c28-34c4-11f1-8836-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:43,185  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4768-b01e-000b-5bd1-c8cb46000000'
+    'x-ms-client-request-id': 'b2016c28-34c4-11f1-8836-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:43 GMT'
+2026-04-10 13:04:43,192  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b220bf26-34c4-11f1-ad86-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:43,420  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4786-b01e-000b-77d1-c8cb46000000'
+    'x-ms-client-request-id': 'b220bf26-34c4-11f1-ad86-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:43 GMT'
+2026-04-10 13:04:43,427  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b2448a98-34c4-11f1-9bbb-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:43,646  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4796-b01e-000b-04d1-c8cb46000000'
+    'x-ms-client-request-id': 'b2448a98-34c4-11f1-9bbb-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:44 GMT'
+2026-04-10 13:04:43,652  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b266e401-34c4-11f1-a3ab-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:43,852  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef47a1-b01e-000b-0ed1-c8cb46000000'
+    'x-ms-client-request-id': 'b266e401-34c4-11f1-a3ab-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:44 GMT'
+2026-04-10 13:04:43,858  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b286622f-34c4-11f1-af05-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:44,099  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef47ad-b01e-000b-18d1-c8cb46000000'
+    'x-ms-client-request-id': 'b286622f-34c4-11f1-af05-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:44 GMT'
+2026-04-10 13:04:44,105  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b2ac1dd9-34c4-11f1-841d-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:44,332  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef47b4-b01e-000b-1fd1-c8cb46000000'
+    'x-ms-client-request-id': 'b2ac1dd9-34c4-11f1-841d-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:44 GMT'
+2026-04-10 13:04:44,339  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b2cfb341-34c4-11f1-81b8-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:44,579  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef47bd-b01e-000b-28d1-c8cb46000000'
+    'x-ms-client-request-id': 'b2cfb341-34c4-11f1-81b8-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:44 GMT'
+2026-04-10 13:04:44,585  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b2f5585f-34c4-11f1-9182-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:44,803  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef47e5-b01e-000b-36d1-c8cb46000000'
+    'x-ms-client-request-id': 'b2f5585f-34c4-11f1-9182-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:45 GMT'
+2026-04-10 13:04:44,811  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b317c63b-34c4-11f1-b173-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:45,022  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef47e9-b01e-000b-3ad1-c8cb46000000'
+    'x-ms-client-request-id': 'b317c63b-34c4-11f1-b173-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:45 GMT'
+2026-04-10 13:04:45,028  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b338f0e4-34c4-11f1-aa50-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:45,220  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef47f5-b01e-000b-43d1-c8cb46000000'
+    'x-ms-client-request-id': 'b338f0e4-34c4-11f1-aa50-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:45 GMT'
+2026-04-10 13:04:45,227  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b357324e-34c4-11f1-85ec-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:45,468  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4808-b01e-000b-52d1-c8cb46000000'
+    'x-ms-client-request-id': 'b357324e-34c4-11f1-85ec-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:45 GMT'
+2026-04-10 13:04:45,473  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b37ccdd7-34c4-11f1-a9d5-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:45,671  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4812-b01e-000b-59d1-c8cb46000000'
+    'x-ms-client-request-id': 'b37ccdd7-34c4-11f1-a9d5-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:46 GMT'
+2026-04-10 13:04:45,678  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b39c1ee2-34c4-11f1-8295-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:45,883  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4822-b01e-000b-63d1-c8cb46000000'
+    'x-ms-client-request-id': 'b39c1ee2-34c4-11f1-8295-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:46 GMT'
+2026-04-10 13:04:45,888  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b3bc2af1-34c4-11f1-be1b-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:46,090  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef482e-b01e-000b-6dd1-c8cb46000000'
+    'x-ms-client-request-id': 'b3bc2af1-34c4-11f1-be1b-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:46 GMT'
+2026-04-10 13:04:46,097  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b3dbfe0c-34c4-11f1-b1b7-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:46,316  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4842-b01e-000b-7ed1-c8cb46000000'
+    'x-ms-client-request-id': 'b3dbfe0c-34c4-11f1-b1b7-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:46 GMT'
+2026-04-10 13:04:46,320  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b3fdfe2d-34c4-11f1-b190-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:46,507  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4850-b01e-000b-0ad1-c8cb46000000'
+    'x-ms-client-request-id': 'b3fdfe2d-34c4-11f1-b190-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:46 GMT'
+2026-04-10 13:04:46,513  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b41b8df6-34c4-11f1-9e4c-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:46,705  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef485b-b01e-000b-13d1-c8cb46000000'
+    'x-ms-client-request-id': 'b41b8df6-34c4-11f1-9e4c-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:47 GMT'
+2026-04-10 13:04:46,712  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b439e691-34c4-11f1-bc6b-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:46,934  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef487b-b01e-000b-2dd1-c8cb46000000'
+    'x-ms-client-request-id': 'b439e691-34c4-11f1-bc6b-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:47 GMT'
+2026-04-10 13:04:46,937  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b45c3feb-34c4-11f1-81e2-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:47,143  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4893-b01e-000b-45d1-c8cb46000000'
+    'x-ms-client-request-id': 'b45c3feb-34c4-11f1-81e2-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:47 GMT'
+2026-04-10 13:04:47,148  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b47c5558-34c4-11f1-b63d-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:47,383  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef489e-b01e-000b-4cd1-c8cb46000000'
+    'x-ms-client-request-id': 'b47c5558-34c4-11f1-b63d-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:47 GMT'
+2026-04-10 13:04:47,387  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b4a0e086-34c4-11f1-bbd1-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:47,602  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef48b0-b01e-000b-5ad1-c8cb46000000'
+    'x-ms-client-request-id': 'b4a0e086-34c4-11f1-bbd1-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:47 GMT'
+2026-04-10 13:04:47,608  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b4c27f63-34c4-11f1-8009-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:47,803  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef48cb-b01e-000b-71d1-c8cb46000000'
+    'x-ms-client-request-id': 'b4c27f63-34c4-11f1-8009-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:48 GMT'
+2026-04-10 13:04:47,807  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b4e0f0f7-34c4-11f1-8a05-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:48,004  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef48de-b01e-000b-02d1-c8cb46000000'
+    'x-ms-client-request-id': 'b4e0f0f7-34c4-11f1-8a05-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:48 GMT'
+2026-04-10 13:04:48,011  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b500172a-34c4-11f1-a2c8-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:48,248  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef48f6-b01e-000b-17d1-c8cb46000000'
+    'x-ms-client-request-id': 'b500172a-34c4-11f1-a2c8-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:48 GMT'
+2026-04-10 13:04:48,269  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4101937'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b5276bf6-34c4-11f1-989a-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:48,474  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4908-b01e-000b-26d1-c8cb46000000'
+    'x-ms-client-request-id': 'b5276bf6-34c4-11f1-989a-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:48 GMT'
+2026-04-10 13:04:48,477  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/advanced_xgboost_model.pkl?comp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '2735'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/xml'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b54727aa-34c4-11f1-a6d1-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:48,492  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Last-Modified': 'Fri, 10 Apr 2026 10:04:48 GMT'
+    'ETag': '"0x8DE96E899BB3F12"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef491a-b01e-000b-35d1-c8cb46000000'
+    'x-ms-client-request-id': 'b54727aa-34c4-11f1-a6d1-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:48 GMT'
+2026-04-10 13:04:48,494  [INFO]    [OK] Uploaded: models/advanced_xgboost_model.pkl
+2026-04-10 13:04:48,494  [INFO]    Uploading crime-classifier-decision-tree (2.2 MB) -> models/decision_tree_model.pkl ...
+2026-04-10 13:04:48,500  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/decision_tree_model.pkl'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '2354193'
+    'x-ms-blob-type': 'REDACTED'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b54a9d2e-34c4-11f1-92f7-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:48,638  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Content-MD5': 'REDACTED'
+    'Last-Modified': 'Fri, 10 Apr 2026 10:04:49 GMT'
+    'ETag': '"0x8DE96E899D19427"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4920-b01e-000b-3bd1-c8cb46000000'
+    'x-ms-client-request-id': 'b54a9d2e-34c4-11f1-92f7-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:48 GMT'
+2026-04-10 13:04:48,641  [INFO]    [OK] Uploaded: models/decision_tree_model.pkl
+2026-04-10 13:04:48,641  [INFO]    Uploading crime-classifier-logreg-baseline (0.0 MB) -> models/baseline_logreg_model.pkl ...
+2026-04-10 13:04:48,644  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/my-models-storage/models/baseline_logreg_model.pkl'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '3905'
+    'x-ms-blob-type': 'REDACTED'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b5609923-34c4-11f1-a198-60ff9e4c0695'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 13:04:48,659  [INFO]  Response status: 201
+Response headers:
+    'Content-Length': '0'
+    'Content-MD5': 'REDACTED'
+    'Last-Modified': 'Fri, 10 Apr 2026 10:04:49 GMT'
+    'ETag': '"0x8DE96E899D4C4E5"'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58ef4930-b01e-000b-4bd1-c8cb46000000'
+    'x-ms-client-request-id': 'b5609923-34c4-11f1-a198-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-content-crc64': 'REDACTED'
+    'x-ms-request-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 10 Apr 2026 10:04:49 GMT'
+2026-04-10 13:04:48,661  [INFO]    [OK] Uploaded: models/baseline_logreg_model.pkl
+2026-04-10 13:04:48,661  [INFO]  ============================================================
+2026-04-10 13:04:48,662  [INFO]  UPLOAD SUMMARY
+2026-04-10 13:04:48,662  [INFO]  ============================================================
+2026-04-10 13:04:48,662  [INFO]    OK      crime-classifier-xgboost (champion)
+2026-04-10 13:04:48,663  [INFO]    OK      crime-classifier-decision-tree
+2026-04-10 13:04:48,663  [INFO]    OK      crime-classifier-logreg-baseline
+2026-04-10 13:04:48,663  [INFO]    Container : my-models-storage
+2026-04-10 13:04:48,664  [INFO]    Log       : logs\upload_models.log
+2026-04-10 13:04:48,664  [INFO]  ============================================================

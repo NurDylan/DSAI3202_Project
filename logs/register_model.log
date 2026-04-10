@@ -1,0 +1,542 @@
+2026-04-10 00:14:23,781  [INFO]  ============================================================
+2026-04-10 00:14:23,781  [INFO]  TASK II.3 - MODEL REGISTRATION STARTED
+2026-04-10 00:14:23,781  [INFO]  ============================================================
+2026-04-10 00:14:23,782  [INFO]  ============================================================
+2026-04-10 00:14:23,782  [INFO]  STEP 1 - Verifying model files...
+2026-04-10 00:14:23,782  [INFO]  ============================================================
+2026-04-10 00:14:23,783  [INFO]    [OK] crime-classifier-xgboost: data\phase_ii\advanced_xgboost_model.pkl (131.9 MB)
+2026-04-10 00:14:23,783  [INFO]    [OK] crime-classifier-decision-tree: data\phase_ii\decision_tree_model.pkl (2.2 MB)
+2026-04-10 00:14:23,784  [INFO]    [OK] crime-classifier-logreg-baseline: data\phase_ii\baseline_logreg_model.pkl (0.0 MB)
+2026-04-10 00:14:23,784  [INFO]  ============================================================
+2026-04-10 00:14:23,784  [INFO]  STEP 2 - Registering models in Azure ML...
+2026-04-10 00:14:23,785  [INFO]  ============================================================
+2026-04-10 00:14:26,227  [INFO]    Using Azure ML SDK v2 (azure-ai-ml)
+2026-04-10 00:14:26,228  [INFO]  No environment configuration found.
+2026-04-10 00:14:26,230  [INFO]  ManagedIdentityCredential will use IMDS
+2026-04-10 00:14:26,578  [INFO]    Connected to workspace: cloudproject60107174
+2026-04-10 00:14:26,578  [INFO]    Registering: crime-classifier-xgboost ...
+2026-04-10 00:14:26,579  [INFO]  Request URL: 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=REDACTED&resource=REDACTED'
+Request method: 'GET'
+Request headers:
+    'User-Agent': 'azsdk-python-identity/1.25.3 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+No body was attached to the request
+2026-04-10 00:14:31,912  [INFO]  DefaultAzureCredential acquired a token from AzureCliCredential
+2026-04-10 00:14:31,913  [INFO]  Request URL: 'https://management.azure.com/subscriptions/a00dcbea-fd05-4973-82dc-120208b60116/resourceGroups/rg-60107174/providers/Microsoft.MachineLearningServices/workspaces/cloudproject60107174/models/crime-classifier-xgboost/versions?api-version=REDACTED&$orderBy=REDACTED&$top=REDACTED'
+Request method: 'GET'
+Request headers:
+    'Accept': 'application/json'
+    'x-ms-client-request-id': '16e1486f-3459-11f1-9f01-60ff9e4c0695'
+    'User-Agent': 'azure-ai-ml/1.32.0 azsdk-python-mgmt-machinelearningservices/0.1.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-04-10 00:14:33,401  [INFO]  Response status: 404
+Response headers:
+    'Cache-Control': 'no-cache'
+    'Pragma': 'no-cache'
+    'Content-Length': '1011'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Expires': '-1'
+    'Vary': 'REDACTED'
+    'x-ms-ratelimit-remaining-subscription-reads': '249'
+    'x-ms-operation-identifier': 'REDACTED'
+    'Request-Context': 'REDACTED'
+    'x-ms-response-type': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Content-Type-Options': 'REDACTED'
+    'azureml-served-by-cluster': 'REDACTED'
+    'x-request-time': 'REDACTED'
+    'x-ms-ratelimit-remaining-subscription-global-reads': 'REDACTED'
+    'x-ms-request-id': 'c617e3b7-580f-4014-8793-adf867aa6de0'
+    'x-ms-correlation-request-id': 'REDACTED'
+    'x-ms-routing-request-id': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'X-MSEdge-Ref': 'Ref A: C2C9BC52691047E59E1D870049C94F11 Ref B: AUH211051120042 Ref C: 2026-04-09T21:14:33Z'
+    'Date': 'Thu, 09 Apr 2026 21:14:33 GMT'
+2026-04-10 00:14:33,402  [INFO]  Request URL: 'https://management.azure.com/subscriptions/a00dcbea-fd05-4973-82dc-120208b60116/resourceGroups/rg-60107174/providers/Microsoft.MachineLearningServices/workspaces/cloudproject60107174/models/crime-classifier-xgboost?api-version=REDACTED'
+Request method: 'GET'
+Request headers:
+    'Accept': 'application/json'
+    'x-ms-client-request-id': '1af270a4-3459-11f1-aaed-60ff9e4c0695'
+    'User-Agent': 'azure-ai-ml/1.32.0 azsdk-python-mgmt-machinelearningservices/0.1.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-04-10 00:14:33,811  [INFO]  Response status: 404
+Response headers:
+    'Cache-Control': 'no-cache'
+    'Pragma': 'no-cache'
+    'Content-Length': '1009'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Expires': '-1'
+    'Vary': 'REDACTED'
+    'x-ms-ratelimit-remaining-subscription-reads': '249'
+    'x-ms-operation-identifier': 'REDACTED'
+    'Request-Context': 'REDACTED'
+    'x-ms-response-type': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Content-Type-Options': 'REDACTED'
+    'azureml-served-by-cluster': 'REDACTED'
+    'x-request-time': 'REDACTED'
+    'x-ms-ratelimit-remaining-subscription-global-reads': 'REDACTED'
+    'x-ms-request-id': '9a40e42b-f2c0-420f-a2ca-030ab5c1f9c9'
+    'x-ms-correlation-request-id': 'REDACTED'
+    'x-ms-routing-request-id': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'X-MSEdge-Ref': 'Ref A: 26DEDB59E20E4B76B0137C11FC151242 Ref B: AUH211051120042 Ref C: 2026-04-09T21:14:33Z'
+    'Date': 'Thu, 09 Apr 2026 21:14:33 GMT'
+2026-04-10 00:14:34,886  [INFO]  AzureCliCredential.get_token_info succeeded
+2026-04-10 00:14:34,887  [INFO]  DefaultAzureCredential acquired a token from AzureCliCredential
+2026-04-10 00:14:34,887  [INFO]  Request URL: 'https://management.azure.com/subscriptions/a00dcbea-fd05-4973-82dc-120208b60116/resourceGroups/rg-60107174/providers/Microsoft.MachineLearningServices/workspaces/cloudproject60107174/datastores/workspaceblobstore?api-version=REDACTED'
+Request method: 'GET'
+Request headers:
+    'Accept': 'application/json'
+    'x-ms-client-request-id': '1b4b765f-3459-11f1-bc64-60ff9e4c0695'
+    'User-Agent': 'azure-ai-ml/1.32.0 azsdk-python-mgmt-machinelearningservices/0.1.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'Authorization': 'REDACTED'
+No body was attached to the request
+2026-04-10 00:14:36,065  [INFO]  Response status: 200
+Response headers:
+    'Cache-Control': 'no-cache'
+    'Pragma': 'no-cache'
+    'Content-Length': '1102'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Expires': '-1'
+    'Vary': 'REDACTED'
+    'x-ms-ratelimit-remaining-subscription-reads': '249'
+    'x-ms-operation-identifier': 'REDACTED'
+    'Request-Context': 'REDACTED'
+    'x-ms-response-type': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Content-Type-Options': 'REDACTED'
+    'azureml-served-by-cluster': 'REDACTED'
+    'x-request-time': 'REDACTED'
+    'x-ms-ratelimit-remaining-subscription-global-reads': 'REDACTED'
+    'x-ms-request-id': '37b9dc36-d437-4b2d-9888-09b02a2e368e'
+    'x-ms-correlation-request-id': 'REDACTED'
+    'x-ms-routing-request-id': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'X-MSEdge-Ref': 'Ref A: 2C657B5FE71F41B9A25428C87084E34D Ref B: AUH211051120040 Ref C: 2026-04-09T21:14:35Z'
+    'Date': 'Thu, 09 Apr 2026 21:14:36 GMT'
+2026-04-10 00:14:36,073  [INFO]  Request URL: 'https://management.azure.com/subscriptions/a00dcbea-fd05-4973-82dc-120208b60116/resourceGroups/rg-60107174/providers/Microsoft.MachineLearningServices/workspaces/cloudproject60107174/datastores/workspaceblobstore/listSecrets?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '48'
+    'Accept': 'application/json'
+    'x-ms-client-request-id': '1c89f093-3459-11f1-88be-60ff9e4c0695'
+    'User-Agent': 'azure-ai-ml/1.32.0 azsdk-python-mgmt-machinelearningservices/0.1.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'Authorization': 'REDACTED'
+A body is sent with the request
+2026-04-10 00:14:36,882  [INFO]  Response status: 200
+Response headers:
+    'Cache-Control': 'no-cache'
+    'Pragma': 'no-cache'
+    'Content-Length': '164'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Expires': '-1'
+    'x-ms-operation-identifier': 'REDACTED'
+    'Request-Context': 'REDACTED'
+    'x-ms-response-type': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Content-Type-Options': 'REDACTED'
+    'azureml-served-by-cluster': 'REDACTED'
+    'x-request-time': 'REDACTED'
+    'x-ms-ratelimit-remaining-subscription-writes': '199'
+    'x-ms-ratelimit-remaining-subscription-global-writes': 'REDACTED'
+    'x-ms-request-id': 'cac8204c-50af-4fa9-89a2-50a376bb1971'
+    'x-ms-correlation-request-id': 'REDACTED'
+    'x-ms-routing-request-id': 'REDACTED'
+    'X-Cache': 'REDACTED'
+    'X-MSEdge-Ref': 'Ref A: 3D941D062D314CC4AB09F006F4686E4F Ref B: AUH211051120040 Ref C: 2026-04-09T21:14:36Z'
+    'Date': 'Thu, 09 Apr 2026 21:14:36 GMT'
+2026-04-10 00:14:36,889  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'HEAD'
+Request headers:
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d06802c-3459-11f1-8d38-60ff9e4c0695'
+No body was attached to the request
+2026-04-10 00:14:37,282  [INFO]  Response status: 404
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '709fc66e-301e-0067-2565-c820d1000000'
+    'x-ms-client-request-id': '1d06802c-3459-11f1-8d38-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:37 GMT'
+2026-04-10 00:14:37,294  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d44306b-3459-11f1-a928-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,299  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d45009a-3459-11f1-b2fe-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,303  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d45a2bf-3459-11f1-a59c-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,307  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d464045-3459-11f1-87fa-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,310  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d46b309-3459-11f1-a3c3-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,313  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d473db6-3459-11f1-aa8a-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,319  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d4810d6-3459-11f1-ba50-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,323  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d48b781-3459-11f1-afbd-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,329  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d49a2da-3459-11f1-b33d-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,336  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d4ab4c4-3459-11f1-ab5b-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,342  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d4b9501-3459-11f1-9359-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,351  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d4ce0df-3459-11f1-ab4f-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,357  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d4de7d8-3459-11f1-8d4a-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,363  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d4ec1e6-3459-11f1-9aed-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,371  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d4ff5cd-3459-11f1-b185-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,378  [INFO]  Request URL: 'https://cloudproject60107174.blob.core.windows.net/azureml-blobstore-b2c7dece-90bc-4af0-b5ed-bdeacb6bfcc1/LocalUpload/8b7a8fe5abe642c8b5e7191fdda1f369e986e1b90ccb56d932f8c4388e0e7124/advanced_xgboost_model.pkl?comp=REDACTED&blockid=REDACTED&sv=REDACTED&sig=REDACTED&se=REDACTED&srt=REDACTED&ss=REDACTED&sp=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Length': '4194304'
+    'x-ms-version': 'REDACTED'
+    'Content-Type': 'application/octet-stream'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.13.2 (Windows-11-10.0.26100-SP0)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': '1d512a7b-3459-11f1-9d85-60ff9e4c0695'
+A body is sent with the request
+2026-04-10 00:14:37,385  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '709fc675-301e-0067-2865-c820d1000000'
+    'x-ms-client-request-id': '1d44306b-3459-11f1-a928-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:37 GMT'
+2026-04-10 00:14:37,434  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '709fc67f-301e-0067-2f65-c820d1000000'
+    'x-ms-client-request-id': '1d512a7b-3459-11f1-9d85-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:37 GMT'
+2026-04-10 00:14:38,886  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'c134ec5a-501e-0095-4465-c8d898000000'
+    'x-ms-client-request-id': '1d45009a-3459-11f1-b2fe-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:39,108  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '2b7b36c3-b01e-0046-0265-c804aa000000'
+    'x-ms-client-request-id': '1d45a2bf-3459-11f1-a59c-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:39,256  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '9028c26e-701e-0082-5665-c87193000000'
+    'x-ms-client-request-id': '1d464045-3459-11f1-87fa-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:39,734  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'c7ceb3ac-901e-00a5-4565-c86657000000'
+    'x-ms-client-request-id': '1d48b781-3459-11f1-afbd-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:39,737  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'fa90113a-c01e-004c-4065-c8a01d000000'
+    'x-ms-client-request-id': '1d4de7d8-3459-11f1-8d4a-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:39 GMT'
+2026-04-10 00:14:39,763  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'c21d4962-901e-007e-0d65-c8a06a000000'
+    'x-ms-client-request-id': '1d46b309-3459-11f1-a3c3-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:39,792  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '8248ffca-901e-009a-7665-c8aef4000000'
+    'x-ms-client-request-id': '1d4ab4c4-3459-11f1-ab5b-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:39,873  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'a08198a1-b01e-000b-4865-c8cb46000000'
+    'x-ms-client-request-id': '1d473db6-3459-11f1-aa8a-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:39,913  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '119c8816-001e-0088-5a65-c8d524000000'
+    'x-ms-client-request-id': '1d4ec1e6-3459-11f1-9aed-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:39,984  [WARNING]  Connection pool is full, discarding connection: cloudproject60107174.blob.core.windows.net. Connection pool size: 10
+2026-04-10 00:14:39,985  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '58287738-a01e-005a-6d65-c856ca000000'
+    'x-ms-client-request-id': '1d4ff5cd-3459-11f1-b185-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:40,028  [WARNING]  Connection pool is full, discarding connection: cloudproject60107174.blob.core.windows.net. Connection pool size: 10
+2026-04-10 00:14:40,029  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '108ccf84-401e-0052-6565-c84cc5000000'
+    'x-ms-client-request-id': '1d49a2da-3459-11f1-b33d-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:39 GMT'
+2026-04-10 00:14:40,095  [WARNING]  Connection pool is full, discarding connection: cloudproject60107174.blob.core.windows.net. Connection pool size: 10
+2026-04-10 00:14:40,096  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'c17ae230-c01e-0001-1d65-c86ff1000000'
+    'x-ms-client-request-id': '1d4810d6-3459-11f1-ba50-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:38 GMT'
+2026-04-10 00:14:40,110  [WARNING]  Connection pool is full, discarding connection: cloudproject60107174.blob.core.windows.net. Connection pool size: 10
+2026-04-10 00:14:40,111  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': '3c373932-e01e-0039-4c65-c8cb31000000'
+    'x-ms-client-request-id': '1d4ce0df-3459-11f1-ab4f-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:39 GMT'
+2026-04-10 00:14:40,389  [WARNING]  Connection pool is full, discarding connection: cloudproject60107174.blob.core.windows.net. Connection pool size: 10
+2026-04-10 00:14:40,421  [INFO]  Response status: 404
+Response headers:
+    'Content-Length': '225'
+    'Content-Type': 'application/xml'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'e949c32d-301e-00ac-1165-c82384000000'
+    'x-ms-client-request-id': '1d4b9501-3459-11f1-9359-60ff9e4c0695'
+    'x-ms-version': 'REDACTED'
+    'x-ms-error-code': 'ContainerNotFound'
+    'Date': 'Thu, 09 Apr 2026 21:14:39 GMT'
+2026-04-10 00:14:40,424  [ERROR]    Azure ML connection failed: The specified container does not exist.
+RequestId:709fc675-301e-0067-2865-c820d1000000
+Time:2026-04-09T21:14:37.7253498Z
+ErrorCode:ContainerNotFound
+Content: <?xml version="1.0" encoding="utf-8"?><Error><Code>ContainerNotFound</Code><Message>The specified container does not exist.
+RequestId:709fc675-301e-0067-2865-c820d1000000
+Time:2026-04-09T21:14:37.7253498Z</Message></Error>
+2026-04-10 00:14:40,425  [WARNING]    Falling back to LOCAL-ONLY registration record.
+2026-04-10 00:14:40,425  [INFO]    Creating local registration record (no Azure ML connection)...
+2026-04-10 00:14:40,426  [INFO]    [LOCAL] crime-classifier-xgboost recorded (131.9 MB)
+2026-04-10 00:14:40,426  [INFO]    [LOCAL] crime-classifier-decision-tree recorded (2.2 MB)
+2026-04-10 00:14:40,427  [INFO]    [LOCAL] crime-classifier-logreg-baseline recorded (0.0 MB)
+2026-04-10 00:14:40,427  [INFO]  ============================================================
+2026-04-10 00:14:40,427  [INFO]  STEP 3 - Saving local model registry record...
+2026-04-10 00:14:40,428  [INFO]  ============================================================
+2026-04-10 00:14:40,431  [INFO]    Registry record saved -> data\phase_ii\model_registry.json
+2026-04-10 00:14:40,431  [INFO]  ============================================================
+2026-04-10 00:14:40,431  [INFO]  MODEL REGISTRATION SUMMARY
+2026-04-10 00:14:40,432  [INFO]  ============================================================
+2026-04-10 00:14:40,432  [INFO]    Models registered  : 3
+2026-04-10 00:14:40,433  [INFO]    Champion model     : crime-classifier-xgboost
+2026-04-10 00:14:40,433  [INFO]  
+2026-04-10 00:14:40,434  [INFO]    Model Comparison:
+2026-04-10 00:14:40,434  [INFO]    Model                                      Accuracy   Macro F1   Champion
+2026-04-10 00:14:40,435  [INFO]    ------------------------------------------------------------------------
+2026-04-10 00:14:40,436  [INFO]    crime-classifier-xgboost                     0.2876     0.0768        YES
+2026-04-10 00:14:40,436  [INFO]    crime-classifier-decision-tree               0.2739     0.0458           
+2026-04-10 00:14:40,437  [INFO]    crime-classifier-logreg-baseline             0.2551     0.0279           
+2026-04-10 00:14:40,437  [INFO]  ============================================================
+2026-04-10 00:14:40,438  [INFO]    Output: data/phase_ii/model_registry.json
+2026-04-10 00:14:40,439  [INFO]    Log:    logs/register_model.log
+2026-04-10 00:14:40,439  [INFO]  ============================================================
+2026-04-10 00:14:40,440  [INFO]  MODEL REGISTRATION COMPLETE
