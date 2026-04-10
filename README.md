@@ -1,94 +1,82 @@
 # Predicting Crime Types by Location & Time-Series Data
-### DSAI3202 — Winter 2026 | Project Phase 1
+### DSAI3202 — Winter 2026 | Project Phase 2
 
 **Authors:** Nur Afiqah · 60306981 &nbsp;|&nbsp; Elaf Marouf · 60107174
 
 ---
 
 ## Table of Contents
-1. [Project Overview](#1-project-overview)
+1. [Phase 2 Overview](#1-phase-2-overview)
 2. [Repository Structure](#2-repository-structure)
 3. [How to Run](#3-how-to-run)
-4. [Task 1 — Data Ingestion](#4-task-1--data-ingestion)
-5. [Task 2 — ETL Pipeline](#5-task-2--etl-pipeline)
-6. [Task 3 — Cataloging & Governance](#6-task-3--cataloging--governance)
-7. [Task 4 — Exploratory Data Analysis](#7-task-4--exploratory-data-analysis)
-8. [Task 5 — Feature Extraction & Selection](#8-task-5--feature-extraction--selection)
-9. [Data Lineage](#9-data-lineage)
-10. [Assumptions](#10-assumptions)
-11. [Azure Deployment](#11-azure-deployment)
+4. [Task II.1 — Model Development](#4-task-ii1--model-development)
+5. [Task II.2 — Model Validation](#5-task-ii2--model-validation)
+6. [Task II.3 — Model Versioning & Registration](#6-task-ii3--model-versioning--registration)
+7. [Task II.4 — Deployment](#7-task-ii4--deployment)
+8. [Task II.5 — Deployment Validation](#8-task-ii5--deployment-validation)
+9. [Azure Infrastructure](#9-azure-infrastructure)
+10. [Limitations & Known Issues](#10-limitations--known-issues)
+11. [Contributions](#11-contributions)
 
 ---
 
-## 1. Project Overview
+## 1. Phase 2 Overview
 
-### Description
-This project builds a complete AI data pipeline to predict **crime types** in Chicago based on geospatial coordinates and temporal patterns. The system addresses the difficulty of anticipating specific crime categories (theft, assault, vandalism) before they occur, enabling proactive deployment of specialised law enforcement units and preventive measures.
+Phase 2 builds on the data pipeline established in Phase 1 to train, validate, version, and deploy machine learning models for predicting Chicago crime types.
 
-The pipeline emphasises **system-level design** over isolated model performance and covers: hypothesis development, ETL from a Kaggle structured crime dataset, preprocessing, exploratory analysis, and temporal-spatial feature engineering.
-
-### Hypothesis
+### Hypothesis (carried from Phase 1)
 > By building a classification model following the pipeline process outlined in this project, our aim is to help the police force decide resource allocation at the start of each shift by predicting the crime type so that **response time improves from baseline by 15%** under limited patrol cars.
 
-### Dataset
+### Phase 2 Scope
 
-| Field | Value |
-|-------|-------|
-| Name | USA Big City Crime Dataset (Chicago) |
-| Source | [Kaggle](https://www.kaggle.com/datasets/middlehigh/los-angeles-crime-data-from-2000/data) |
-| Raw Size | 1,662.9 MB |
-| Raw Rows | 7,391,187 |
-| Cleaned Rows | 7,282,602 |
-| Columns | 22 |
-| Date Range | 2001-01-01 to 2024-05-20 |
-| Target Variable | Primary Type (29 classes) |
+| Task | Description | Status |
+|------|-------------|--------|
+| II.1 | Model Development | Complete |
+| II.2 | Model Validation | Complete |
+| II.3 | Model Versioning & Registration | Complete |
+| II.4 | Deployment | Complete |
+| II.5 | Deployment Validation | Complete |
+
+### Input
+`processed-data/chicago_crime_features_v1.0.csv` — 7,282,602 rows × 10 columns, produced by Phase 1 feature engineering pipeline, stored in Azure Blob Storage.
+
+### Output
+`model-outputs/batch_predictions_v1.0.csv` — 500,000 rows scored with predicted crime type, predicted label integer, and confidence score, stored in Azure Blob Storage.
 
 ---
 
 ## 2. Repository Structure
 
 ```
-phase_one/
+DSAI3202_Project/
 ├── data/
-│   ├── raw/                              <- versioned originals — NEVER modified
-│   │   └── chicago_crime_v1.0_2026-03-16.csv
-│   ├── processed/                        <- ETL output, cleaned and typed
-│   │   ├── chicago_crime_cleaned_v1.0.csv
-│   │   └── chicago_crime_features_v1.0.csv
-│   └── catalog/                          <- schema metadata, lineage, assumptions
-│       ├── ingestion_manifest.json
-│       ├── etl_report.json
-│       ├── data_catalog.json
-│       ├── lineage.json
-│       ├── assumptions.json
-│       ├── zone_registry.json
-│       ├── crime_type_merges.json
-│       └── label_encoding.json
-├── src/
-│   ├── ingestion.py                      <- Task 1: Data Ingestion
-│   ├── etl.py                            <- Task 2: ETL Pipeline
-│   ├── catalog.py                        <- Task 3: Cataloging & Governance
-│   ├── eda.py                            <- Task 4: Exploratory Analysis
-│   ├── features.py                       <- Task 5: Feature Engineering
-│   ├── azure_upload.py                   <- Uploads outputs to Azure Blob Storage
-│   └── azure_validate.py                 <- Validates pipeline from Azure Blob Storage
-├── outputs/
-│   └── eda/                              <- saved EDA plots (PNG)
-├── screenshots/
-│   ├── azure_validation_result.png       <- ALL CHECKS PASSED terminal output
-│   ├── azure_raw_container.png           <- raw-data Blob container
-│   ├── azure_processed_container.png     <- processed-data Blob container
-│   ├── azure_catalog_container.png       <- catalog-data Blob container
-│   └── azure_compute_instance.png        <- phase1-compute ML instance
+│   ├── catalog/                              <- Phase 1 metadata (unchanged)
+│   │   ├── label_encoding.json               <- crime_type_label integer → string mapping
+│   │   └── ...
+│   └── phase_ii/                             <- Phase 2 artifacts
+│       ├── crime_modeling.ipynb              <- Training notebook (XGBoost, DT, LogReg)
+│       ├── advanced_xgboost_model.pkl        <- Champion model (131.9 MB)
+│       ├── decision_tree_model.pkl           <- Intermediate baseline (2.2 MB)
+│       ├── baseline_logreg_model.pkl         <- Logistic Regression baseline
+│       ├── model_comparison_metrics.csv      <- Accuracy, F1, balanced accuracy comparison
+│       └── model_registry.json              <- Version + metadata record for all 3 models
+├── deployment/
+│   ├── batch_predictions_v1.0.csv           <- 500k scored predictions (local copy)
+│   ├── deployment_config.json               <- Input/output interface + batch stats
+│   └── validation_report.json              <- 12/12 tests PASS
+├── scripts/
+│   ├── register_model.py                    <- Task II.3: registers models to Azure Blob
+│   ├── upload_models.py                     <- Uploads all 3 .pkl files to my-models-storage
+│   ├── deploy_model.py                      <- Task II.4: batch scoring + Azure upload
+│   └── validate_deployment.py              <- Task II.5: functional + consistency tests
 ├── logs/
-│   ├── ingestion.log
-│   ├── etl.log
-│   ├── catalog.log
-│   ├── eda.log
-│   ├── features.log
-│   ├── azure_upload.log
-│   └── azure_validate.log
-└── README.md
+│   ├── register_model.log
+│   ├── deploy_model.log
+│   └── validate_deployment.log (generated on run)
+├── Screenshots/
+│   ├── azure_models_storage.png             <- my_models_storage with all 3 .pkl files
+│   └── azure_model_outputs_container.png   <- model-outputs with batch_predictions_v1.0.csv
+└── README.md                                <- This file
 ```
 
 ---
@@ -97,429 +85,309 @@ phase_one/
 
 ### Prerequisites
 ```bash
-pip install pandas numpy scikit-learn matplotlib seaborn holidays
+pip install xgboost scikit-learn pandas numpy joblib azure-storage-blob azure-ai-ml azure-identity
 ```
 
-### Step 1 — Download the dataset
-Download the CSV from [Kaggle](https://www.kaggle.com/datasets/middlehigh/los-angeles-crime-data-from-2000/data), place it in the project root and name it `crime_data.csv`.
+### Step 1 — Train models
+Open and run `data/phase_ii/crime_modeling.ipynb` in order. This reads the feature matrix from Azure Blob Storage, trains all 3 models, and saves `.pkl` files locally.
 
-### Step 2 — Run each task individually
+### Step 2 — Upload models to Azure
 ```bash
-python src/ingestion.py   # Task 1
-python src/etl.py         # Task 2
-python src/catalog.py     # Task 3
-python src/eda.py         # Task 4
-python src/features.py    # Task 5
+python scripts/upload_models.py
 ```
+Uploads all 3 `.pkl` files to the `my-models-storage` container in Azure Blob Storage.
 
-> **Windows note:** If you see `UnicodeEncodeError` warnings in the console, these are cosmetic only — all scripts include a UTF-8 console fix. All outputs are written correctly to files regardless.
+### Step 3 — Register models
+```bash
+python scripts/register_model.py
+```
+Attempts Azure ML Model Registry registration; falls back to updating `data/phase_ii/model_registry.json` with full metadata if interactive auth is unavailable.
 
-> **joblib warning:** The `Could not find number of physical cores` warning from scikit-learn is harmless. Silence it with: `setx LOKY_MAX_CPU_COUNT 4`
+### Step 4 — Run batch deployment
+```bash
+python scripts/deploy_model.py
+```
+Reads 500,000 rows from `processed-data/chicago_crime_features_v1.0.csv` in Azure Blob, runs batch predictions, and uploads results to `model-outputs/batch_predictions_v1.0.csv`.
+
+### Step 5 — Validate deployment
+```bash
+python scripts/validate_deployment.py
+```
+Runs 12 functional tests and writes `deployment/validation_report.json`.
 
 ---
 
-## 4. Task 1 — Data Ingestion
+## 4. Task II.1 — Model Development
 
-### Ingestion Mode
-**Batch** — one-time historical load. The dataset is a static archive of Chicago crime records from 2001 to 2024. Real-time streaming ingestion is not required for this project.
+### Algorithm Selection & Justification
 
-### Refresh Strategy
-On-demand re-run with an incremented semantic version tag (e.g. `v1.1`). Each ingestion run produces a new versioned file, independently traceable by version + date.
+Three models were trained on the same feature set and data split to enable direct comparison.
 
-### Versioning Convention
-```
-data/raw/chicago_crime_v1.0_2026-03-16.csv
-              ^name    ^ver  ^ingestion date
-```
+| Model | Role | Justification |
+|-------|------|---------------|
+| **Logistic Regression** | Baseline | Fast, interpretable, establishes minimum acceptable accuracy for a linear classifier. Uses `StandardScaler` pipeline to normalise features. |
+| **Decision Tree** | Intermediate baseline | Non-linear, no scaling required, interpretable decision paths. `max_depth=12` limits size to remain saveable. |
+| **XGBoost** | Champion | Gradient-boosted ensemble — handles class imbalance better than single trees, faster than Random Forest at this scale via `tree_method=hist`. |
 
-### Storage Layout
+### Feature Set
 
-| Zone | Path | Rule |
-|------|------|------|
-| Raw | `data/raw/` | Original download — NEVER modified |
-| Processed | `data/processed/` | ETL output — cleaned and typed |
-| Catalog | `data/catalog/` | Schema definitions, ETL report, lineage |
-| Logs | `logs/` | One log file per script |
+All models were trained on the same 7 features selected during Phase 1 feature engineering:
 
-### Ingestion Results (confirmed from log)
+| Feature | Type | Source |
+|---------|------|--------|
+| `hour_sin` | float | Cyclical encoding of hour — preserves midnight continuity |
+| `hour_cos` | float | Complement of hour_sin |
+| `is_weekend` | bool | 1 if Saturday or Sunday |
+| `is_night` | bool | 1 if hour 22:00–05:59 |
+| `Latitude` | float64 | WGS84 — core spatial predictor |
+| `Longitude` | float64 | WGS84 — core spatial predictor |
+| `community_area_enc` | int | Label-encoded Community Area (1–77) |
+
+**Target:** `crime_type_label` — integer-encoded Primary Type (0–28, 29 classes)
+
+### Reproducibility
+
+| Parameter | Value |
+|-----------|-------|
+| `random_state` / `random_seed` | `42` (all models) |
+| Training rows | 500,000 (sampled from 7.28M with `random_state=42`) |
+| Test rows | 100,000 |
+| Train/test split | 80/20 (`test_size=0.2`) |
+| Data version | `v1.0` (`chicago_crime_features_v1.0.csv`) |
+
+### XGBoost Hyperparameters (Champion)
+
+| Parameter | Value | Rationale |
+|-----------|-------|-----------|
+| `n_estimators` | 300 | Sufficient rounds for convergence on 500k rows |
+| `max_depth` | 10 | Deep enough to capture spatial-temporal interactions |
+| `learning_rate` | 0.1 | Standard — balances convergence speed vs overfitting |
+| `tree_method` | `hist` | Histogram-based — essential for speed at this data scale |
+| `random_state` | 42 | Reproducibility |
+
+### Training Data Note
+Models were trained on a 500,000-row sample rather than the full 7.28M rows due to Azure ML Compute memory constraints on the available instance tier (`Standard_DS1_v2`). The sample was drawn with `random_state=42`, making results fully reproducible.
+
+---
+
+## 5. Task II.2 — Model Validation
+
+### Validation Strategy
+
+- **Hold-out split**: 80/20 train/test, stratification not applied (class distribution maintained naturally at 500k sample size)
+- **No data leakage**: `Arrest` (post-incident field) excluded at feature engineering stage; the test set is never seen during training
+- **Baseline comparison**: all 3 models evaluated on the same test set with identical metrics
+
+**Note on Logistic Regression split:** The logreg baseline used `shuffle=False` in its train/test split (temporal order preserved), while XGBoost and Decision Tree used `random_state=42` shuffle. This reflects a deliberate design choice — logreg approximates a temporal validation scenario, while the tree models are evaluated on a random hold-out. This difference is acknowledged as a limitation in Section 10.
+
+### Evaluation Metrics
+
+Four metrics were selected to capture both overall and per-class performance on this imbalanced 29-class problem:
+
+| Metric | Why selected |
+|--------|-------------|
+| **Accuracy** | Overall correctness — interpretable but misleading on imbalanced data alone |
+| **Balanced Accuracy** | Average recall per class — penalises models that ignore rare classes |
+| **Macro F1-Score** | Unweighted mean F1 across all 29 classes — best indicator of per-class performance |
+| **Weighted Precision** | Precision weighted by class support — reflects real-world prediction reliability |
+
+### Results
+
+| Model | Accuracy | Balanced Accuracy | Macro F1 | Weighted Precision |
+|-------|----------|-------------------|----------|--------------------|
+| Logistic Regression | 25.51% | 4.32% | 0.0279 | 0.1386 |
+| Decision Tree | 27.39% | 6.14% | 0.0458 | 0.2152 |
+| **XGBoost (Champion)** | **28.76%** | **9.18%** | **0.0768** | **0.2376** |
+
+XGBoost leads on all four metrics and is selected as the champion model.
+
+### Error Analysis
+
+All models show a large gap between accuracy (~28%) and balanced accuracy (~9%), indicating that predictions are dominated by the two most frequent classes: **THEFT** and **BATTERY**, which together account for ~38% of all records. Rare crime types (e.g. ARSON, GAMBLING) are largely ignored by all models due to uncorrected class imbalance.
+
+The Macro F1 of 0.0768 for XGBoost reflects this — most of the 29 classes have near-zero F1 individually. Addressing class imbalance (via `scale_pos_weight`, SMOTE, or class-weighted loss) is the primary lever for improving per-class performance in future iterations.
+
+### Metric Artefacts
+- `model_comparison_metrics.csv` — all 4 metrics for all 3 models, saved by the notebook
+- `data/phase_ii/model_registry.json` — metrics embedded in model metadata for traceability
+
+---
+
+## 6. Task II.3 — Model Versioning & Registration
+
+### Registration Approach
+
+Models are versioned and registered to Azure Blob Storage under the `my_models_storage` datastore, which is connected to the `cloudproject60107174` Azure ML workspace. This provides full traceability between the training data version, feature set, and deployed artifact.
+
+Azure ML SDK v2 (`MLClient.models.create_or_update`) is called first in `register_model.py`; the script falls back to a local registry record if interactive authentication is unavailable in the execution environment.
+
+### Registered Models
+
+| Model Name | Version | Azure Blob Path | Champion |
+|-----------|---------|----------------|---------|
+| `crime-classifier-xgboost` | 1 | `models/advanced_xgboost_model.pkl` | ✅ |
+| `crime-classifier-decision-tree` | 1 | `models/decision_tree_model.pkl` | — |
+| `crime-classifier-logreg-baseline` | 1 | `models/baseline_logreg_model.pkl` | — |
+
+**Datastore:** `my_models_storage` | **Storage Account:** `cloudproject60107174` | **Resource Group:** `rg-60107174`
+
+### Model Metadata (all models share)
+
+| Field | Value |
+|-------|-------|
+| Training data version | `v1.0` |
+| Training data path | `processed-data/chicago_crime_features_v1.0.csv` |
+| Feature set | `hour_sin, hour_cos, is_weekend, is_night, Latitude, Longitude, community_area_enc` |
+| Target | `crime_type_label` |
+| Classes | 29 |
+| Training rows | 500,000 |
+| Test rows | 100,000 |
+| Random seed | 42 |
+
+Full metadata record: `data/phase_ii/model_registry.json`
+
+### Screenshot
+
+**Models in Azure Blob Storage (`my_models_storage > models/`)**
+
+![Azure Models Storage](Screenshots/azure_models_storage.png)
+
+---
+
+## 7. Task II.4 — Deployment
+
+### Serving Mode: Batch
+
+**Justification:** The project hypothesis targets resource allocation decisions made at the *start of each police shift*, not real-time incident response. Predictions are generated once per batch run over historical and upcoming period data, then used by shift commanders for patrol planning. Sub-500ms latency per record is not required — total batch throughput is the relevant metric. Batch mode is also significantly cheaper than a hosted real-time endpoint for a student project.
+
+### Input Interface
+
+| Field | Value |
+|-------|-------|
+| Source container | `processed-data` |
+| Source blob | `chicago_crime_features_v1.0.csv` |
+| Format | CSV |
+| Required columns | `hour_sin, hour_cos, is_weekend, is_night, Latitude, Longitude, community_area_enc` |
+
+### Output Interface
+
+| Field | Value |
+|-------|-------|
+| Destination container | `model-outputs` |
+| Destination blob | `batch_predictions_v1.0.csv` |
+| Format | CSV |
+| Added columns | `predicted_label` (int), `predicted_crime_type` (string), `confidence_score` (float) |
+
+### Batch Statistics
 
 | Metric | Value |
 |--------|-------|
-| File size | 1,662.9 MB |
-| Rows ingested | 7,391,187 |
-| Columns | 22 |
-| Schema validation | PASSED — all 22 columns present |
-| Exact duplicates | 0 |
-| Duplicate Case Numbers | 565 |
-| MD5 checksum | `3cfac7dd7d8eb2d47b9665ddbe56e486` |
+| Rows scored | 500,000 |
+| Batch chunk size | 100,000 rows |
+| Average confidence score | 0.3226 |
+| Deployment date | 2026-04-10 |
 
-### Null Summary (raw data)
+### Feature Parity
 
-| Column | Null Count | Null % |
-|--------|-----------|--------|
-| Ward | 614,820 | 8.32% |
-| Community Area | 613,469 | 8.30% |
-| Location / Lat / Lon / X / Y | 74,115 | 1.00% |
-| Location Description | 9,124 | 0.12% |
-| All other columns | 1 each | ~0.00% |
-
-### Output Files
-- `data/raw/chicago_crime_v1.0_2026-03-16.csv` — versioned raw file
-- `data/catalog/ingestion_manifest.json` — source URL, row count, MD5, columns
-- `logs/ingestion.log` — full run log
-
----
-
-## 5. Task 2 — ETL Pipeline
-
-### Design Principles
-- **Reproducible** — deterministic, same input always produces same output
-- **Documented** — every step logs row count before and after
-- **Non-destructive** — raw data in `data/raw/` is never touched
-- **Fail-safe** — critical columns dropped not imputed; all decisions logged
-
-### Transformations Applied
-
-| Step | Name | Rows Dropped | Notes |
-|------|------|-------------|-------|
-| 1 | Drop exact duplicates | 0 | No identical rows found |
-| 2 | Dedup by Case Number | 565 | Keep first occurrence per case |
-| 3 | Drop missing critical columns | 74,115 | Date, Primary Type, Lat, Lon |
-| 4 | Fill non-critical nulls | 0 | Text cols → `UNKNOWN`; numeric → `0` |
-| 5 | Fix data types | 0 | Date → datetime64; Lat/Lon → float64; Arrest → bool |
-| 6 | Validate coordinates (bounding box) | 147 | Outside Chicago: Lat [41.60–42.05], Lon [–88.00–87.50] |
-| 7 | Validate temporal range | 0 | All records within 2001-01-01 to 2026-03-16 |
-| 8 | Standardize crime type labels | 0 | 8 rare types (< 500) merged into OTHER |
-| 9 | IQR outlier removal on coordinates | 33,758 | Longitude IQR [–87.84190, –87.50010] |
-| 10 | Final quality check | 0 | Validation gate — no critical nulls confirmed |
-| 11 | Save cleaned dataset | — | Written to `data/processed/` |
-| **Total** | | **108,585** | **Retention: 98.53%** |
-
-### Crime Types Merged into OTHER (Step 8)
-The following 8 types had fewer than 500 occurrences and were merged:
-`PUBLIC INDECENCY`, `NON-CRIMINAL`, `OTHER NARCOTIC VIOLATION`, `HUMAN TRAFFICKING`, `NON - CRIMINAL`, `RITUALISM`, `NON-CRIMINAL (SUBJECT SPECIFIED)`, `DOMESTIC VIOLENCE`
-
-### Final Crime Type Distribution (29 classes)
-
-| Crime Type | Count |
-|-----------|-------|
-| THEFT | 1,544,341 |
-| BATTERY | 1,344,711 |
-| CRIMINAL DAMAGE | 836,259 |
-| NARCOTICS | 727,970 |
-| ASSAULT | 469,409 |
-| OTHER OFFENSE | 455,543 |
-| BURGLARY | 409,543 |
-| MOTOR VEHICLE THEFT | 345,906 |
-| DECEPTIVE PRACTICE | 296,183 |
-| ROBBERY | 277,027 |
-| *(19 more classes)* | *...* |
-
-### Output Files
-- `data/processed/chicago_crime_cleaned_v1.0.csv` — 7,282,602 rows × 22 columns (1,623.3 MB)
-- `data/catalog/etl_report.json` — all 11 steps with rows_before, rows_after, notes
-- `data/catalog/crime_type_merges.json` — rare types merged into OTHER
-- `logs/etl.log` — full step-by-step log
-
----
-
-## 6. Task 3 — Cataloging & Governance
-
-### Data Zones
-
-| Zone | Path | Access Rule | Description |
-|------|------|-------------|-------------|
-| Raw | `data/raw/` | READ ONLY | Original files, never modified after ingestion |
-| Processed | `data/processed/` | Pipeline scripts only | Cleaned, typed, validated |
-| Catalog | `data/catalog/` | Pipeline scripts only | JSON metadata files |
-| Logs | `logs/` | Append only | Execution logs per script |
-
-### Column Schema (Post-ETL)
-
-| Column | Type | Nullable | Role | Notes |
-|--------|------|----------|------|-------|
-| ID | int64 | No | Identifier | Not used as feature |
-| Case Number | string | No | Identifier | Deduplicated in ETL Step 2 |
-| Date | datetime64 | No | Feature Source | Source of all temporal features |
-| Block | string | → UNKNOWN | Descriptive | Not used as feature |
-| IUCR | string | → UNKNOWN | Descriptive | Illinois crime code |
-| **Primary Type** | string | No | **TARGET** | 29 classes, UPPERCASE |
-| Description | string | → UNKNOWN | Descriptive | Subcategory of Primary Type |
-| Location Description | string | → UNKNOWN | Feature Candidate | 5,873 nulls filled |
-| Arrest | bool | No | **EXCLUDED** | Post-incident — target leakage risk |
-| Domestic | bool | No | Feature Candidate | Illinois Domestic Violence Act flag |
-| Beat | int64 | → 0 | Feature Candidate | Smallest police patrol unit |
-| District | int64 | → 0 | Feature Candidate | Police district (1–25) |
-| Ward | int64 | → 0 | Feature Candidate | City ward (1–50), 8.32% null |
-| Community Area | int64 | → 0 | Feature Candidate | Neighbourhood (1–77), 8.30% null |
-| FBI Code | string | → UNKNOWN | Descriptive | Federal crime classification |
-| X Coordinate | float64 | Yes | Descriptive | State Plane feet — not used |
-| Y Coordinate | float64 | Yes | Descriptive | State Plane feet — not used |
-| Year | int64 | No | Feature Candidate | Range: 2001–2024 |
-| Updated On | datetime64 | Yes | Metadata | Last record update |
-| **Latitude** | float64 | No | **Feature** | WGS84, range 41.64459–42.02291 |
-| **Longitude** | float64 | No | **Feature** | WGS84, range –87.84190–87.52453 |
-| Location | string | Yes | Descriptive | Combined (lat, lon) string |
-
-### Output Files
-- `data/catalog/data_catalog.json` — full annotated schema for all 22 columns
-- `data/catalog/lineage.json` — 6-stage data lineage from source to feature matrix
-- `data/catalog/assumptions.json` — 14 documented assumptions across 5 categories
-- `data/catalog/zone_registry.json` — filesystem scan of all zones with file sizes
-- `logs/catalog.log` — full run log
-
----
-
-## 7. Task 4 — Exploratory Data Analysis
-
-### Objective
-Assess **data readiness** — evaluate distributions, detect risks, and justify ETL and feature engineering decisions. All plots are saved to `outputs/eda/`.
-
-### Analyses Performed
-
-**1. Crime Type Distribution (Target Variable)**
-- THEFT dominates at 1,544,341 records (21.2% of cleaned data)
-- Class imbalance present: largest class (THEFT) is ~2,471× larger than smallest (OTHER at 625)
-- Imbalance must be addressed in Phase 2 via class weighting or SMOTE
-
-**2. Temporal Pattern Analysis**
-- Hourly: crime peaks between 18:00–22:00; lowest between 04:00–06:00
-- Day of week: Friday and Saturday show elevated crime frequency
-- Monthly: crime is higher in summer months (June–August)
-- Yearly trend: declining from peak ~485k (2001–2002) to ~89k (2023), with anomalous dip in 2021–2022
-
-**3. Spatial Distribution**
-- Crimes cluster heavily in the South Side and West Side of Chicago
-- Spatial clustering varies by crime type — NARCOTICS concentrated in specific neighbourhoods, THEFT more city-wide
-- Motivates use of Community Area and Beat as geospatial features
-
-**4. Correlation Analysis**
-- Low correlation between temporal features and spatial features — confirms independence
-- `hour` and `is_night` are correlated by design (is_night derived from hour) — only one retained
-- `Latitude` and `Longitude` show near-zero correlation with each other
-
-**5. Coordinate Outlier Check**
-- Post-ETL box plots confirm no remaining coordinate outliers
-- Longitude range tight: –87.84 to –87.52 (all valid Chicago bounds)
-
-### Data Readiness Verdict
-The dataset is **ready for feature engineering and modelling** with the following notes:
-- Class imbalance requires handling in Phase 2 (class weights recommended)
-- Ward and Community Area `0` values (from null-fill) should be treated as a separate category, not a numeric zero
-- Temporal patterns strongly support hour-of-day and day-of-week as predictive features
-- Spatial clustering supports Latitude, Longitude, and Community Area as features
-
-### Output Files
-- `outputs/eda/crime_type_distribution.png`
-- `outputs/eda/temporal_analysis.png`
-- `outputs/eda/spatial_distribution.png`
-- `outputs/eda/correlation_heatmap.png`
-- `outputs/eda/coordinate_boxplot.png`
-- `logs/eda.log`
-
----
-
-## 8. Task 5 — Feature Extraction & Selection
-
-### Feature Engineering
-
-**Temporal Features** (extracted from `Date` column)
-
-| Feature | Type | Description | Justification |
-|---------|------|-------------|---------------|
-| `hour` | int (0–23) | Hour of crime occurrence | Crime type varies strongly by time of day |
-| `day_of_week` | int (0–6) | Day of week (0=Monday) | Weekend vs weekday crime patterns differ |
-| `month` | int (1–12) | Month of year | Seasonal crime patterns (summer vs winter) |
-| `is_weekend` | bool | 1 if Saturday or Sunday | Weekend binary flag for classifier |
-| `is_night` | bool | 1 if hour 22:00–05:59 | Night-time crimes have different type profiles |
-| `hour_sin` | float | sin(2π × hour / 24) | Cyclical encoding — preserves midnight continuity |
-| `hour_cos` | float | cos(2π × hour / 24) | Cyclical encoding — complements hour_sin |
-| `is_holiday` | bool | 1 if US public holiday | Holiday periods show distinct crime patterns |
-
-**Geospatial Features**
-
-| Feature | Type | Description | Justification |
-|---------|------|-------------|---------------|
-| `Latitude` | float64 | WGS84 latitude | Core spatial predictor — crime type clusters geographically |
-| `Longitude` | float64 | WGS84 longitude | Core spatial predictor |
-| `community_area_enc` | int | Encoded Community Area (1–77) | Neighbourhood-level socioeconomic context |
-| `is_crowded` | bool | High-density area flag | Dense areas have different crime type profiles |
-
-**Target Encoding**
-
-| Feature | Type | Description |
-|---------|------|-------------|
-| `crime_type_label` | int | LabelEncoded Primary Type (0–28) |
-
-Label mapping saved to `data/catalog/label_encoding.json`.
-
-### Feature Selection — Mutual Information
-
-Mutual information (MI) was computed between each feature and `crime_type_label`. Features with MI score > 0.01 were retained.
-
-**Features RETAINED after MI selection:**
-
-| Feature | MI Score | Category |
-|---------|----------|----------|
-| `hour` | highest | Temporal |
-| `hour_sin` | high | Temporal (cyclical) |
-| `hour_cos` | high | Temporal (cyclical) |
-| `is_weekend` | medium | Temporal |
-| `is_night` | medium | Temporal |
-| `Latitude` | high | Spatial |
-| `Longitude` | high | Spatial |
-| `community_area_enc` | medium | Spatial |
-| `is_crowded` | medium | Spatial |
-
-**Total features selected: 9**
-
-### Why `Arrest` is Excluded
-`Arrest` records whether an arrest was made **after** the crime. Including it would constitute **target leakage** — the model would learn from post-incident information unavailable at prediction time (start of shift).
-
-### Output Files
-- `data/processed/chicago_crime_features_v1.0.csv` — 7,282,602 rows × 10 columns (9 features + label)
-- `data/catalog/label_encoding.json` — crime type → integer mapping (29 classes)
-- `logs/features.log` — full run log
-
----
-
-## 9. Data Lineage
-
+Feature columns at serving time are **identical** to training time in both name and order:
 ```
-[1] Kaggle Source
-    URL: kaggle.com/datasets/middlehigh/los-angeles-crime-data-from-2000
-    Format: CSV  |  Size: 1,662.9 MB  |  Rows: 7,391,187
-        |
-        v  src/ingestion.py
-[2] Raw Zone
-    data/raw/chicago_crime_v1.0_2026-03-16.csv
-    MD5: 3cfac7dd7d8eb2d47b9665ddbe56e486
-        |
-        v  src/etl.py  (11 steps, 108,585 rows dropped)
-[3] Processed Zone
-    data/processed/chicago_crime_cleaned_v1.0.csv
-    Rows: 7,282,602  |  Retention: 98.53%
-        |
-        v  src/catalog.py
-[4] Catalog Zone
-    data/catalog/data_catalog.json + lineage.json + assumptions.json
-        |
-        v  src/eda.py
-[5] EDA Outputs
-    outputs/eda/ (5 plots)
-        |
-        v  src/features.py
-[6] Feature Matrix
-    data/processed/chicago_crime_features_v1.0.csv
-    Rows: 7,282,602  |  Features: 9  |  Target classes: 29
+hour_sin, hour_cos, is_weekend, is_night, Latitude, Longitude, community_area_enc
 ```
+No preprocessing is applied at serving time beyond what was encoded in the trained model. This is verified programmatically in `validate_deployment.py` (Test 4).
+
+### Deployment Script
+`scripts/deploy_model.py` — reads data from Azure Blob, runs predictions in 100k-row chunks, uploads output CSV back to Azure Blob. Full execution log: `logs/deploy_model.log`.
+
+### Screenshot
+
+**Batch Predictions in Azure Blob Storage (`model-outputs` container)**
+
+![Azure Model Outputs Container](Screenshots/azure_model_outputs_container.png)
 
 ---
 
-## 10. Assumptions
+## 8. Task II.5 — Deployment Validation
 
-### Data Quality
-| ID | Assumption | Impact |
+### Validation Results: 12 / 12 PASS 
+
+| # | Test | Result | Detail |
+|---|------|--------|--------|
+| 1 | Model file loads successfully | PASS | `advanced_xgboost_model.pkl` loaded via joblib (131.9 MB) |
+| 2 | Model has expected feature count | PASS | `n_features_in_=7`, matches training feature set |
+| 3 | Single-record prediction returns valid label | PASS | Predicted label=6, confidence=0.3603 |
+| 4 | Prediction output is integer in [0, 28] | PASS | All predictions within valid 29-class range |
+| 5 | Confidence score in [0, 1] | PASS | min=0.1482, max=0.7743 across 500k predictions |
+| 6 | Single-record latency < 500ms | PASS | avg=49.76ms per call |
+| 7 | Batch-1000 per-record latency < 10ms | PASS | total=311.9ms, per_record=0.312ms |
+| 8 | Feature parity: serving == training | PASS | Column set identical |
+| 9 | Feature order matches | PASS | Column order identical |
+| 10 | Predictions file is readable | PASS | 500,000 rows × 13 columns |
+| 11 | Output columns present | PASS | `predicted_label`, `predicted_crime_type`, `confidence_score` all present |
+| 12 | Offline == deployed predictions (100 rows) | PASS | 100/100 rows match |
+
+Full report: `deployment/validation_report.json`
+
+### Consistency Test
+100 rows were drawn from `batch_predictions_v1.0.csv`, their feature columns passed to `model.predict()` offline, and the results compared to the stored `predicted_label` column. **100/100 rows match**, confirming the batch scoring pipeline produces deterministic and correct predictions.
+
+---
+
+## 9. Azure Infrastructure
+
+### Phase 2 Resources
+
+| Resource | Name | Purpose |
+|----------|------|---------|
+| Storage Account | `cloudproject60107174` | Hosts all blob containers |
+| Blob Container | `my-models-storage` | Stores versioned model `.pkl` files |
+| Blob Container | `model-outputs` | Stores batch prediction output CSV |
+| ML Workspace | `cloudproject60107174` | Azure ML workspace for model registry |
+| Resource Group | `rg-60107174` | — |
+| Subscription | `a00dcbea-fd05-4973-82dc-120208b60116` | — |
+
+### Full Azure Container Inventory (Phase 1 + Phase 2)
+
+| Container | Phase | Contents |
+|-----------|-------|---------|
+| `raw-data` | Phase 1 | `chicago_crime_v1.0_2026-03-16.csv` |
+| `processed-data` | Phase 1 | cleaned CSV + feature matrix CSV |
+| `catalog-data` | Phase 1 | JSON metadata files |
+| `my-models-storage` | **Phase 2** | `models/advanced_xgboost_model.pkl`, `models/decision_tree_model.pkl`, `models/baseline_logreg_model.pkl` |
+| `model-outputs` | **Phase 2** | `batch_predictions_v1.0.csv` |
+
+### Phase 2 Scripts
+
+| Script | Task | Purpose |
+|--------|------|---------|
+| `data/phase_ii/crime_modeling.ipynb` | II.1 | Trains all 3 models, saves `.pkl` files |
+| `scripts/upload_models.py` | II.3 | Uploads `.pkl` files to Azure Blob |
+| `scripts/register_model.py` | II.3 | Registers models with metadata in Azure ML |
+| `scripts/deploy_model.py` | II.4 | Batch scoring + upload to Azure Blob |
+| `scripts/validate_deployment.py` | II.5 | 12-test functional validation suite |
+
+---
+
+## 10. Limitations & Known Issues
+
+| ID | Limitation | Impact |
 |----|-----------|--------|
-| DQ-01 | Rows missing Latitude or Longitude are dropped — cannot be geolocated | 74,115 rows removed |
-| DQ-02 | Rows missing Primary Type are dropped — target variable cannot be imputed | Included in 74,115 |
-| DQ-03 | Non-critical text nulls filled with `UNKNOWN` to preserve rows | 5,873 Location Description nulls filled |
-| DQ-04 | Ward (8.32%) and Community Area (8.30%) nulls filled with `0` — models must treat `0` as missing-indicator | ~614k rows retain `0` |
-
-### Geospatial
-| ID | Assumption | Impact |
-|----|-----------|--------|
-| GEO-01 | Coordinates outside Chicago bounding box are data entry errors | 147 rows removed |
-| GEO-02 | Longitude IQR outliers [–87.842, –87.500] are anomalous clusters, removed | 33,758 rows removed |
-| GEO-03 | Latitude and Longitude (WGS84) used as spatial features; X/Y Coordinate (State Plane) excluded | X/Y retained in file but not in feature matrix |
-
-### Temporal
-| ID | Assumption | Impact |
-|----|-----------|--------|
-| TEMP-01 | All timestamps are Chicago local time (CT) — no timezone conversion applied | Hour features may be off ±1 hr during DST transitions |
-| TEMP-02 | Records before 2001-01-01 or after today are data errors | 0 rows removed — all records valid |
-
-### Target Variable
-| ID | Assumption | Impact |
-|----|-----------|--------|
-| TGT-01 | Primary Type standardised to UPPERCASE; rare types (< 500) merged into OTHER | 8 types merged; 29 final classes |
-| TGT-02 | DOMESTIC VIOLENCE fell below threshold and was merged into OTHER | Records labeled OTHER; threshold can be lowered to 100 to restore this class |
-
-### Modelling
-| ID | Assumption | Impact |
-|----|-----------|--------|
-| MDL-01 | `Arrest` is EXCLUDED — post-incident field, would cause target leakage | Retained in processed file but never passed to classifier |
-| MDL-02 | Case Number dedup keeps first occurrence — updated records reflect admin changes, not new crimes | 565 updated records removed |
-| MDL-03 | Time-series cross-validation with temporal splits used in Phase 2 | Train: 2001–2020 / Val: 2021–2022 / Test: 2023–2024 |
-
-### Ethics & Fairness
-| ID | Assumption | Impact |
-|----|-----------|--------|
-| ETH-01 | Model predicts crime TYPE, not individuals — no demographic data used | Reduces direct individual discrimination risk |
-| ETH-02 | Geographic features may encode historical policing bias — over-policed areas show more recorded crime | Model predictions reflect recorded patterns, not true crime rates. This limitation must be stated in deployment documentation |
+| LIM-01 | Trained on 500k of 7.28M rows due to compute constraints | Model may underfit rare spatial patterns present only in full dataset |
+| LIM-02 | Class imbalance not corrected — THEFT and BATTERY dominate predictions | Rare crime types (ARSON, GAMBLING, etc.) have near-zero per-class F1 |
+| LIM-03 | Temporal split not enforced for XGBoost and Decision Tree | Random 80/20 split may allow mild temporal leakage — future work should use time-based CV |
+| LIM-04 | Geographic features may encode historical policing bias | Over-policed areas generate more recorded crime; model predictions reflect recorded patterns, not true crime rates |
+| LIM-05 | Model predicts crime TYPE only, not individuals or locations | Cannot predict where or by whom a crime will occur |
+| LIM-06 | Average confidence score of 0.3226 indicates low certainty | 29-class problem with strong class overlap; confidence should be displayed to end users alongside predictions |
 
 ---
 
-## 11. Azure Deployment
+## 11. Contributions
 
-### Infrastructure
-
-| Resource | Name | Tier / SKU |
-|----------|------|-----------|
-| Resource Group | `dsai3202-phase1` | — |
-| Storage Account | `cloudproject60107174` | Standard LRS — lowest cost tier |
-| Blob Container — Raw | `raw-data` | Private |
-| Blob Container — Processed | `processed-data` | Private |
-| Blob Container — Catalog | `catalog-data` | Private |
-| ML Compute Instance | `phase1-compute` | Standard_DS1_v2 — stopped when idle |
-
-### Deployment Scripts
-
-| Script | Purpose |
-|--------|---------|
-| `src/azure_upload.py` | Uploads all pipeline outputs from local machine to Blob Storage |
-| `src/azure_validate.py` | Runs on Azure ML Compute — reads all files from Blob Storage and validates integrity |
-
-### Cost Optimisation
-- **LRS redundancy** — no geo-replication needed for student project data
-- **Compute stopped when idle** — Standard_DS1_v2 billed by the hour, stopped immediately after validation
-- **Sample-based validation** — `azure_validate.py` reads only 50,000 rows instead of the full 1.6 GB file, minimising egress costs
-
-### Screenshots
-
-**1 — Validation Result (Azure ML Terminal)**
-
-![Azure Validation Result](Screenshots/azure_validation_result.png)
+| Author | Phase 2 Contributions |
+|--------|-----------------------|
+| **Elaf Marouf (60107174)** | Model registration (`register_model.py`), deployment (`deploy_model.py`), Azure Blob setup, batch scoring pipeline, `deployment_config.json` |
+| **Nur Afiqah (60306981)** | Model training notebook (`crime_modeling.ipynb`), XGBoost tuning, metrics comparison, `model_comparison_metrics.csv` |
+| **Shared** | Deployment validation (`validate_deployment.py`), `model_registry.json`, documentation, GitHub repository |
 
 ---
 
-**2 — Raw Data Container**
-
-![Raw Data Container](Screenshots/azure_raw_container.png)
-
----
-
-**3 — Processed Data Container**
-
-![Processed Data Container](Screenshots/azure_processed_container.png)
-
----
-
-**4 — Catalog Container**
-
-![Catalog Container](Screenshots/azure_catalog_container.png)
-
----
-
-**5 — Compute Instance**
-
-![Compute Instance](Screenshots/azure_compute_instance.png)
-
----
-
-## Contributions
-* **Elaf Marouf (60107174)**: Lead on Data Ingestion, ETL pipeline development and Deployment. Implemented missing value handling and data validation logic. 
-* **Nur Afiqah (60306981)**: Focused on Exploratory Analysis and Feature Engineering & Selection. Created visualisations and developed cyclical time features and performed Mutual Information analysis.
-* **Shared Responsibilities**: Documentation, GitHub repository management
-
-*DSAI3202 — Winter 2026 | Phase 1 | Nur Afiqah (60306981) & Elaf Marouf (60107174)*
+*DSAI3202 — Winter 2026 | Phase 2 | Nur Afiqah (60306981) & Elaf Marouf (60107174)*
