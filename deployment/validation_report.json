@@ -1,0 +1,82 @@
+{
+  "validation_version": "1.0",
+  "validation_date": "2026-04-10",
+  "champion_model": "crime-classifier-xgboost",
+  "total_tests": 12,
+  "passed": 12,
+  "failed": 0,
+  "pass_rate": "100.0%",
+  "overall_result": "PASS",
+  "tests": [
+    {
+      "test": "Model file loads successfully",
+      "status": "PASS",
+      "detail": "data/phase_ii/advanced_xgboost_model.pkl loaded via joblib (131.9 MB)"
+    },
+    {
+      "test": "Model has expected feature count",
+      "status": "PASS",
+      "detail": "n_features_in_=7, matches training feature set"
+    },
+    {
+      "test": "Single-record prediction returns valid label",
+      "status": "PASS",
+      "detail": "Input: [hour_sin=0.5, hour_cos=0.866, is_weekend=0, is_night=1, Lat=41.85, Lon=-87.65, community_area_enc=5] -> predicted_label=6, confidence=0.3603"
+    },
+    {
+      "test": "Prediction output is integer in [0, 28]",
+      "status": "PASS",
+      "detail": "All predictions fall within valid class range (29 classes, labels 0-28)"
+    },
+    {
+      "test": "Confidence score in [0, 1]",
+      "status": "PASS",
+      "detail": "min=0.1482, max=0.7743 across 500,000 batch predictions"
+    },
+    {
+      "test": "Single-record latency < 500ms",
+      "status": "PASS",
+      "detail": "avg=49.76ms per single prediction call (batch inference mode; acceptable for batch serving)"
+    },
+    {
+      "test": "Batch-1000 per-record latency < 10ms",
+      "status": "PASS",
+      "detail": "total=311.9ms for 1000 records, per_record=0.312ms"
+    },
+    {
+      "test": "Feature parity: serving == training",
+      "status": "PASS",
+      "detail": "Training: ['hour_sin', 'hour_cos', 'is_weekend', 'is_night', 'Latitude', 'Longitude', 'community_area_enc'] | Serving: identical"
+    },
+    {
+      "test": "Feature order matches",
+      "status": "PASS",
+      "detail": "Column order confirmed identical between training and scoring pipeline"
+    },
+    {
+      "test": "Predictions file is readable",
+      "status": "PASS",
+      "detail": "deployment/batch_predictions_v1.0.csv — 500,000 rows, 13 columns"
+    },
+    {
+      "test": "Output columns present: predicted_label, predicted_crime_type, confidence_score",
+      "status": "PASS",
+      "detail": "All 3 required output columns present in batch_predictions_v1.0.csv"
+    },
+    {
+      "test": "Offline == deployed predictions (100 rows)",
+      "status": "PASS",
+      "detail": "100/100 rows match between offline model.predict() and stored batch predictions"
+    }
+  ],
+  "azure_blob_validation": {
+    "model_storage": "my_models_storage (Azure Blob Storage)",
+    "model_blob_path": "models/advanced_xgboost_model.pkl",
+    "predictions_container": "model-outputs",
+    "predictions_blob": "batch_predictions_v1.0.csv",
+    "upload_status": "CONFIRMED — HTTP 201 response logged in logs/deploy_model.log",
+    "subscription_id": "a00dcbea-fd05-4973-82dc-120208b60116",
+    "resource_group": "rg-60107174",
+    "workspace": "cloudproject60107174"
+  }
+}
