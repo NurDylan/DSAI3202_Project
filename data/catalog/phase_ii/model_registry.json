@@ -1,0 +1,100 @@
+{
+  "registry_version": "1.0",
+  "created_date": "2026-04-10",
+  "workspace": "cloudproject60107174",
+  "resource_group": "rg-60107174",
+  "registration_mode": "Azure Blob Storage (my_models_storage datastore)",
+  "registration_note": "Models registered to Azure Blob Storage datastore 'my_models_storage' under the 'models/' prefix. Azure ML Model Registry registration requires interactive authentication; blob-based registration provides equivalent traceability for this deployment.",
+  "shared_metadata": {
+    "training_data_version": "v1.0",
+    "training_data_path": "processed-data/chicago_crime_features_v1.0.csv",
+    "feature_set": [
+      "hour_sin",
+      "hour_cos",
+      "is_weekend",
+      "is_night",
+      "Latitude",
+      "Longitude",
+      "community_area_enc"
+    ],
+    "target": "crime_type_label",
+    "n_classes": 29,
+    "training_rows": 500000,
+    "test_rows": 100000,
+    "train_test_split": 0.8,
+    "random_seed": 42,
+    "limitations": [
+      "Trained on 500k sample of 7.28M available rows due to compute constraints.",
+      "Class imbalance not corrected — rare crime types underperform.",
+      "Geographic features may reflect historical policing bias.",
+      "Temporal split not enforced in training — future leakage possible in logreg baseline.",
+      "Model predicts crime TYPE only, not individuals or locations."
+    ]
+  },
+  "models": [
+    {
+      "name": "crime-classifier-xgboost",
+      "version": "1",
+      "azure_blob_path": "models/advanced_xgboost_model.pkl",
+      "azure_datastore": "my_models_storage",
+      "azure_storage_account": "cloudproject60107174",
+      "algorithm": "XGBoost",
+      "is_champion": true,
+      "metrics": {
+        "accuracy": 0.2876,
+        "balanced_accuracy": 0.0918,
+        "macro_f1": 0.0768,
+        "weighted_precision": 0.2376
+      },
+      "params": {
+        "n_estimators": 300,
+        "max_depth": 10,
+        "learning_rate": 0.1,
+        "tree_method": "hist",
+        "random_state": 42
+      },
+      "model_size_mb": 131.9
+    },
+    {
+      "name": "crime-classifier-decision-tree",
+      "version": "1",
+      "azure_blob_path": "models/decision_tree_model.pkl",
+      "azure_datastore": "my_models_storage",
+      "azure_storage_account": "cloudproject60107174",
+      "algorithm": "DecisionTree",
+      "is_champion": false,
+      "metrics": {
+        "accuracy": 0.2739,
+        "balanced_accuracy": 0.0614,
+        "macro_f1": 0.0458,
+        "weighted_precision": 0.2152
+      },
+      "params": {
+        "max_depth": 12,
+        "random_state": 42
+      },
+      "model_size_mb": 2.2
+    },
+    {
+      "name": "crime-classifier-logreg-baseline",
+      "version": "1",
+      "azure_blob_path": "models/baseline_logreg_model.pkl",
+      "azure_datastore": "my_models_storage",
+      "azure_storage_account": "cloudproject60107174",
+      "algorithm": "LogisticRegression",
+      "is_champion": false,
+      "metrics": {
+        "accuracy": 0.2551,
+        "balanced_accuracy": 0.0432,
+        "macro_f1": 0.0279,
+        "weighted_precision": 0.1386
+      },
+      "params": {
+        "max_iter": 1000,
+        "scaler": "StandardScaler"
+      },
+      "model_size_mb": 0.0
+    }
+  ],
+  "champion_model": "crime-classifier-xgboost"
+}
